@@ -12,54 +12,28 @@ import { withRouter } from 'react-router';
 import moment from "moment";/* 日期格式化工具类 */
 import TweenOne from 'rc-tween-one';/* 动画插件 */
 import _ from "lodash";
-import { Map } from 'react-amap';
+import { Map, Marker, Polyline } from 'react-amap';
 import axios from 'axios';
 
 const now = new Date();
 const TimeName = moment().format("YYYY年MM月DD日");
-const mapEvents={};
+
 class Carinfodetail extends Component {
+
     constructor() {
         super();
-        // const _this = this;
-        // this.map = null;
-        // this.marker = null;
-        // this.geocoder = null;
-        // this.mapEvents = {
-        //     created(map) {
-        //         _this.map = map;
-
-        //     },
-        //     click(e) {
-        //         const lnglat = e.lnglat;
-        //         _this.setState({
-        //             position: lnglat,
-        //             currentLocation: 'loading...'
-        //         });
-        //         _this.geocoder && _this.geocoder.getAddress(lnglat, (status, result) => {
-        //             console.log(result);
-        //             if (status === 'complete') {
-        //                 if (result.regeocode) {
-        //                     _this.setState({
-        //                         currentLocation: result.regeocode.formattedAddress || '未知地点'
-        //                     });
-        //                 } else {
-        //                     _this.setState({
-        //                         currentLocation: '未知地点'
-        //                     });
-        //                 }
-        //             } else {
-        //                 _this.setState({
-        //                     currentLocation: '未知地点'
-        //                 });
-        //             }
-        //         })
+        // this.markerEvents = {
+        //     created: (map) => {
+        //         map.setFitView();
         //     }
-        // };
+        // }
+        const _this = this;
+        this.markerEvents = {
+            created: (markers) => {
+                markers.setFitView();
+            }
+        }
     }
-
-
-
     static propTypes = {
         brandData: PropTypes.object.isRequired,
         getBrandData: PropTypes.func.isRequired,
@@ -80,6 +54,22 @@ class Carinfodetail extends Component {
         iAvgSpeed: "0",
         position: "",
         mapzoop: 13,
+        mapEvents: {},
+        startMark: [-17, -42],/* 偏移量 */
+        endMark: [-10, -40],/* 偏移量 */
+
+        startMarkPosition: [],
+        endMarkPosition: [],
+        markerState: false,
+        mapPath: [],
+        MaplineStyle: {
+            strokeColor: "#3366FF", // 线颜色
+            strokeOpacity: 1, // 线透明度
+            strokeWeight: 5, // 线宽
+            strokeStyle: "solid", // 线样式
+            strokeDasharray: [10, 5],
+        }
+
     }
     /* 自动关闭弹窗 */
     closeAlertFun = () => {
@@ -256,77 +246,51 @@ class Carinfodetail extends Component {
             this.closeAlertFun();
         }
     }
-   
+
     showMap = async type => {
+        console.log("调用打开地图");
         try {
             let result = await API.getHistoryDetaliList({
-                "date": String(getDate),
-                "type": String(getType),
-                "startTime": String(startTime),
-                "endTime": String(EndTime),
-                "business": "MapABC",/* 高德地图标识 */
+                // "date": String(getDate),
+                // "type": String(getType),
+                // "startTime": String(startTime),
+                // "endTime": String(EndTime),
+                // "business": "MapABC",/* 高德地图标识 */
             });
             if (result.code === "CD000001") {
 
-                const lineArr = data.body.imeiDetailTrack;
+                const lineArr = result.body.imeiDetailTrack;
 
+
+                const lineArr_first = _.first(lineArr);
+                const lineArr_last = _.last(lineArr);
                 // 判断轨迹点数
                 if (lineArr.length >= 5) {
-
-                    
-                    const centerY = data.body.centerY;
-                    const centerX = data.body.centerX;
-                    this.setState={
-                        position:[centerY,centerX],
-                    }
-                    const mapEvents ={
-                      
-
-                        // 获取开始和结束点
-                        const lineArr_first = _.first(lineArr);
-                        const lineArr_last = _.last(lineArr);
-
-                        // 标记开始和结束
-                        const map_start = new AMap.Marker({ //添加自定义点标记
-                            map: map,
-                            position: lineArr_first, //基点位置
-                            offset: new AMap.Pixel(-17, -42), //相对于基点的偏移位置
-                            draggable: false, //是否可拖动
-                            content: '<div class="marker-route map_start"></div>' //自定义点标记覆盖物内容
-                        });
-
-                        const map_end = new AMap.Marker({ //添加自定义点标记
-                            map: map,
-                            position: lineArr_last, //基点位置
-                            offset: new AMap.Pixel(-10, -40), //相对于基点的偏移位置
-                            draggable: false, //是否可拖动
-                            content: '<div class="marker-route map_end"></div>' //自定义点标记覆盖物内容
-                        });
-
-                        // 在地图上绘制折线
-                        const polyline = new AMap.Polyline({
-                            map: map,
-                            path: lineArr, // 设置线覆盖物路径
-                            strokeColor: "#3366FF", // 线颜色
-                            strokeOpacity: 1, // 线透明度
-                            strokeWeight: 5, // 线宽
-                            strokeStyle: "solid", // 线样式
-                            strokeDasharray: [10, 5]
-                            // 补充线样式
-                        });
-                        polyline.setMap(map);
-                        // 根据地图上添加的覆盖物分布情况，自动缩放地图到合适的视野级别
-                        map.setFitView();
-                        // 取消Load
-                        $.hideLoading();
+                    const centerY = result.body.centerY;
+                    const centerX = result.body.centerX;
+                    this.setState({
+                        markerState: true,
+                        startMarkPosition: _.first(lineArr),
+                        endMarkPosition: _.last(lineArr),
+                        position: [centerY, centerX],
+                        mapPath: lineArr,
+                    });
+                    this.markerEvents = {
+                        created: (map) => {
+                            console.error(map);
+                            map.setFitView();
+                        }
                     }
                 } else {
-                    this.setState({
-                        alertStatus: true,
-                        alertTip: result.msg,
-                    })
-                    this.closeAlertFun();
+                    // this.setState({
+                    //     alertStatus: true,
+                    //     alertTip: result.msg,
+                    // })
+                    // this.closeAlertFun();
+                    this.defaultMap();
                 }
+            } else {
+                this.defaultMap();
             }
         } catch (err) {
             this.setState({
@@ -351,8 +315,16 @@ class Carinfodetail extends Component {
                     if (status === 'complete' && result.info === 'OK') {
                         if (result && result.city && result.bounds) {
                             let hisData = result.adcode;
-                            axios.get('https://restapi.amap.com/v3/config/district?key=03ec59b5d20e05beaea9b9aba7973d83&keywords=' + hisData + '&subdistrict=0&extensions=all').then(function (res) {
-                                var _center = _.split(res.districts[0].center, ',', 2);
+                            axios({
+                                url: 'https://restapi.amap.com/v3/config/district?key=03ec59b5d20e05beaea9b9aba7973d83&keywords=' + hisData + '&subdistrict=0&extensions=all',
+                                contentType: "application/json",
+                                dataType: "json",
+                                data: JSON.stringify({}),
+                                timeout: 30000,
+                                type: 'get',
+                            }).then(function (res) {
+                                var _center = _.split(res.data.districts[0].center, ',', 2);
+                                console.log(_center);
                                 _this.setState({
                                     position: _center
                                 });
@@ -370,7 +342,10 @@ class Carinfodetail extends Component {
     componentWillMount() {
         this.gethistotyList(moment().format('YYYYMMDD'));
         this.getDateList();
-        this.defaultMap();
+        this.showMap();
+    }
+    componentDidMount() {
+
     }
     componentWillReceiveProps(nextProps) {
         // console.log("拿到redux数据");
@@ -399,16 +374,38 @@ class Carinfodetail extends Component {
         return this.state.extra[+date];
     };
 
+    stateMarkerdiv = () => {
+
+    }
+    endMarkerdiv = () => { }
     render() {
+        console.log(this.state.startMarkPosition);
+        console.log(this.state.endMarkPosition);
+        console.log("渲染次数");
         return (
             <main className="common-con-top">
                 <div id="container">
-                    <Map amapkey="c823911f82ee642a5322f8dafcbbeaac" zoom={this.state.mapzoop} center={this.state.position} events={this.mapEvents} features="road">
-                        {/* <Geolocation
-                            ref={(locat) => this.mapLocation = locat}
-                            {...pluginProps} /> */}
-                    </Map>
+                    <Map amapkey="c823911f82ee642a5322f8dafcbbeaac" events={this.markerEvents}>
+                        {
+                            this.state.markerState && <Marker position={this.state.startMarkPosition}
+                                offset={this.state.startMark}
 
+                            >
+                                <div className="marker-route map_start"></div>
+                            </Marker>
+                        }
+
+                        <Polyline path={this.state.mapPath} style={this.state.MaplineStyle} />
+                        {
+                            this.state.markerState && <Marker position={this.state.endMarkPosition}
+                                offset={this.state.endMark}
+                            >
+                                <div className="marker-route map_end"></div>
+                            </Marker>
+                        }
+                    </Map>
+                    <p></p>
+                    <p></p>
                 </div>
                 <div id="mask1"></div>
                 <div className="tip">用车过程中保持网络连接，才能获取准确的位置</div>
