@@ -4,9 +4,9 @@
 let baseURL; 
 let imgUrl = '//elm.cangdu.org/img/';
 if(process.env.NODE_ENV === 'development'){
-  baseURL = '//api.cangdu.org';
+  baseURL = 'https://www.easy-mock.com/mock/5c2d6b92410de05f5d0de661/user/01';
 }else{
-  baseURL = '//api.cangdu.org';
+  baseURL = 'https://www.easy-mock.com/mock/5c2d6b92410de05f5d0de661/user/01';
 }
 
 

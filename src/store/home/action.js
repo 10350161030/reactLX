@@ -1,26 +1,26 @@
 import * as home from './action-type';
+import API from '@/api/api';
 
-// 保存表单数据
-export const saveFormData = (value, datatype) => {
-  return {
-    type: home.SAVEFORMDATA,
-    value,
-    datatype,
-  }
+// 初始化获取登录状态，保存至redux
+export const isUserLogin = () => {
+    // 返回函数，异步dispatch
+    return async dispatch => {
+      try{
+        let result = await API.isUserLogin();
+        if(result.code ==="CD000001"){
+            dispatch({
+                type: home.ISLOGIN,
+                isLoginData: result.body,
+            })
+        }else{
+            dispatch({
+                type: home.ISLOGIN,
+                isLoginData: result,
+            })
+        }
+       
+      }catch(err){
+        console.error(err);
+      }
+    }
 }
-
-// 保存图片地址
-export const saveImg = path => {
-  return {
-    type: home.SAVEIMG,
-    path,
-  }
-}
-
-// 保存图片地址
-export const clearData = () => {
-  return {
-    type: home.CLEARDATA,
-  }
-}
-

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>上传成功</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M46,23.2839506 C46,10.2971852 35.7028148,0 22.7160494,0 C10.2971852,0 0,10.2971852 0,23.2839506 C0,35.7028148 10.2971852,46 22.7160494,46 C35.7028148,46 46,35.7028148 46,23.2839506 Z" id="path-1"></path>
+        <filter x="-15.2%" y="-10.9%" width="130.4%" height="130.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="4G注册流程" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="身份认证5" transform="translate(-161.000000, -134.000000)">
+            <g id="上传成功" transform="translate(165.000000, 136.000000)">
+                <g id="Fill-">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M11.2716058,23.8461312 L12.3753079,22.344345 L12.3753079,22.344345 C12.4407202,22.2553396 12.5659006,22.2362137 12.654906,22.3016261 C12.6559888,22.3024219 12.6570637,22.3032287 12.6581303,22.3040462 L18.8924844,27.0823211 L18.8924844,27.0823211 C18.9666712,27.139181 19.0703474,27.1370736 19.1421623,27.077246 L34.1841506,14.5460531 L34.1841506,14.5460531 C34.2632495,14.4801574 34.3794505,14.4850738 34.4527007,14.5574154 L35.5037574,15.5954356 L35.5037574,15.5954356 C35.5823482,15.6730515 35.5831384,15.799682 35.5055224,15.8782728 C35.5048559,15.8789477 35.5041845,15.8796179 35.5035084,15.8802832 L19.1627259,31.9620542 L19.1627259,31.9620542 C19.0839996,32.0395326 18.9573706,32.038521 18.8798922,31.9597947 C18.8794627,31.9593583 18.8790352,31.9589199 18.8786097,31.9584795 L11.2889352,24.1035427 L11.2889352,24.1035427 C11.2211915,24.0334313 11.2138708,23.9246901 11.2716058,23.8461312 Z" id="Fill-" fill="#10AEFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

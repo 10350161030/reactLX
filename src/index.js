@@ -7,12 +7,9 @@ import registerServiceWorker from "./registerServiceWorker";
 import {AppContainer} from "react-hot-loader";/* 热加载 */
 import {Provider} from "react-redux";
 import store from '@/store/store';
-import './utils/setRem';
+// import './utils/setRem';
 import './style/base.css';
-import 'weui';
-import 'react-weui/build/packages/react-weui.css';
-
-
+import 'antd-mobile/dist/antd-mobile.css';
 FastClick.attach(document.body);
 
 

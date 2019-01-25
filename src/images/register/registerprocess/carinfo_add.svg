@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>行驶证上传</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="23" cy="23" r="23"></circle>
+        <filter x="-15.2%" y="-10.9%" width="130.4%" height="130.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.062745098   0 0 0 0 0.682352941   0 0 0 0 1  0 0 0 0.4 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="4G注册流程" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="车辆信息完善1" transform="translate(-161.000000, -203.000000)">
+            <g id="行驶证上传" transform="translate(165.000000, 205.000000)">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#10AEFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M22,22 L9,22 L9,22 C8.44771525,22 8,22.4477153 8,23 C8,23.5522847 8.44771525,24 9,24 L22,24 L22,37 C22,37.5522847 22.4477153,38 23,38 C23.5522847,38 24,37.5522847 24,37 L24,24 L37,24 C37.5522847,24 38,23.5522847 38,23 C38,22.4477153 37.5522847,22 37,22 L24,22 L24,9 L24,9 C24,8.44771525 23.5522847,8 23,8 L23,8 L23,8 C22.4477153,8 22,8.44771525 22,9 L22,22 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

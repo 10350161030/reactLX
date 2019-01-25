@@ -1,0 +1,187 @@
+@import (reference) "../../style/mixin.less";
+@import "../../assets/iconfonts/iconfont.css";
+@import (reference) "../../style/reset.less";
+
+.common-con-top{
+    .ov;
+}
+// body{
+//     .bg_fff;
+// }
+.ver_form {
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 5rem;
+}
+.ver_form .form-group {
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+.yzm {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.icon {
+ 
+    top: 50%;
+    margin-top: -.9rem;
+    right: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    overflow: hidden;
+    position: absolute;
+}
+.icon:focus {
+    outline: none;
+}
+
+#showPass {
+    background: url("@{assets-img}register/showPass.svg")center no-repeat;
+    background-size: 100% 100%;
+}
+#hidenPass {
+    background: url("@{assets-img}register/hidePass.svg")center no-repeat;
+    background-size: 100% 100%;
+}
+
+.ver_btn {
+    padding: 1.3rem .8rem;
+    text-align: center;
+    line-height: normal;
+    display: block;
+    opacity: .5;
+    color: #fff;
+    font-size: 1.4rem;
+    width: 100%;
+}
+.yzm input {
+    background: #10AEFF;
+    border-radius: .4rem;
+    border: none;
+    color: #fff;
+}
+.yzm a {
+    background: #B4B4B4;
+    border-radius: .4rem;
+    border: none;
+    color: #fff;
+}
+.truedisable {
+    opacity: 1;
+}
+.photo_lable_inp input, .password_lable_inp  input, .ver_label_inp  input{
+    border: none!important;
+    height: 4.6rem!important;
+    background-color: #F4F4F4!important;
+    border-radius: .4rem!important;
+    font-size: 1.8rem!important;
+    text-indent: 1.6rem!important;
+}
+
+.passwordbox{
+    .am-list-item.am-input-error .am-input-error-extra{
+        margin-right:3rem;
+    }
+}
+
+
+/* 协议是否同意协议样式 */
+.agreen_xieyi{
+    .pr;
+    .mgT10;
+    .icon {
+        position: relative;
+        z-index: 0;
+    }
+}
+#checkbox_Id {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url( "@{assets-img}register/butongyi.svg") center no-repeat;
+    background-size: 100%;
+    input {
+        margin: 0;
+        height: 14px;
+        width: 14px;
+        opacity: 0;
+    }
+}
+#checkbox_Id.active{
+    background: url( "@{assets-img}register/tongyi.svg") center no-repeat;
+    background-size: 100%; 
+}
+.xieyi {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #8F8E94;
+    line-height: 14px;
+    float: left;
+    display: inline-block;
+    margin-left: 20px;
+    a {
+        color: #8F8E94;
+        text-decoration: underline;
+    }
+}
+
+/* 登录注册按钮 */
+
+.verifibtn {
+    bottom: 3.5%;
+    position: static;
+    margin-left: 0;
+    width: 100%;
+    margin-top: 35px;
+    margin-bottom: 14px;
+   
+    .next {
+        width: 100%;
+        background: #0C92F2!important;
+        border-radius: 8px;
+        font-family: PingFangSC-Medium;
+        font-size: 20px;
+        color: #FFFFFF;
+    }
+    .disablebtn {
+        background: rgba(12, 146, 242, .6)!important;
+    }
+}
+
+
+
+
+
+/* 登录跳转样式 */
+.login_register {
+    font-size: 14px;
+    line-height: 15px;
+    padding-bottom: .5px;
+    border-bottom: 1px solid #8F8E94;
+    margin-left: auto;
+    margin-right: auto;
+    color: #777;
+}
+.login_registerBox{
+    .tc;
+}
+
+
+/* 修改antd的样式 */
+.am-list-item.am-input-item{
+    padding-left:0!important;
+    border: none;
+    background-color: #f4f4f4;
+}
+.am-list-line{
+    padding-right:0!important;
+}
+.am-list-line::after,.am-input-control::after{
+    background-color: transparent !important;
+}
+.am-list-item .am-input-control input{
+    color: #555;
+}

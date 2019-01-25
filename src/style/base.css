@@ -1,68 +1,546 @@
-*{
-  margin: 0;
-  padding: 0;
-  /*防止点击闪烁*/
-  -webkit-tap-highlight-color: transparent;
-  /*缩放网页，文字大小不变*/
-  -webkit-text-size-adjust: none;
-  font-family: "Helvetica Neue",Helvetica,STHeiTi,sans-serif;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  font-weight: normal;
+* {
+    margin: 0;
+    padding: 0;
+    /*防止点击闪烁*/
+    -webkit-tap-highlight-color: transparent;
+    /*缩放网页，文字大小不变*/
+    -webkit-text-size-adjust: none;
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    font-weight: normal;
 }
+
 /*修复img默认位置和IE边框*/
-img{
-  vertical-align: top;
-  border:none;
+
+img {
+    vertical-align: top;
+    border: none;
 }
 
 /*去除虚线*/
-input:focus,select:focus,textarea:focus,button:focus{
-  outline: none;
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
+
 /*重置部分表单圆角和内阴影*/
-input[type="text"],input[type="file"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],input[type="email"],input[type="url"],textarea{
-    -webkit-appearance:none;
+
+input[type="text"],
+input[type="file"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+textarea {
+    -webkit-appearance: none;
 }
+
 /*去除文本框上下箭头*/
-input[type="number"]::-webkit-inner-spin-button{
-  -webkit-appearance:none;
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+html {
+    font-size:calc(100vw / 37.5)!important;
+    max-width: 768px;
+    margin: 0 auto;
+    background: #fff
+}
+
+@media screen and (min-width:425px) {
+    html {
+        font-size: 14px !important
+    }
+}
+
+@media screen and (min-width:768px) {
+    .alert_error ,.PF_errortoast,#publicFooter ,.photocli_box,.Car_brand,#mask1,#Frame ,#mask,#seriesBox {
+        width:768px;
+        left:50%;
+        margin-left:-384px;
+    }
+}
+
+
+
+body {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    color: #565559;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    float: left;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block
+}
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block;
+    vertical-align: baseline
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden],
+template {
+    display: none
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent
+}
+
+a:active {
+    outline: 0
+}
+
+a:focus,
+a:hover {
+    text-decoration: none
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b,
+strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+small {
+    font-size: 80%
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+img {
+    border: 0;
+    vertical-align: middle
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+
+pre {
+    overflow: auto;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+button {
+    overflow: visible
+}
+
+button,
+select {
+    text-transform: none
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+input {
+    line-height: normal;
+    outline: #ffee00
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: .35em .625em .75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical
+}
+
+optgroup {
+    font-weight: bold
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+td,
+th {
+    padding: 0
+}
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+form,
+blockquote {
+    margin: 0
+}
+
+ul,
+ol,
+li,
+dl,
+dd {
+    margin: 0;
+    padding: 0
+}
+
+ul,
+ol {
+    list-style: none outside none
+}
+
+h1,
+h2,
+h3 {
+    line-height: 2rem;
+    font-weight: normal
+}
+
+h1 {
+    font-size: 1.8rem
+}
+
+h2 {
+    font-size: 1.6rem
+}
+
+h3 {
+    font-size: 1.4rem
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+input[type=text]:focus,
+input[type=tel]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=button]:focus {
+    border: none;
+    outline: 0 !important;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+input[type=all] {
+    border: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+img {
+    max-width: 100%;
+    height: auto
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #939292
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #939292
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #939292
 }
 
 /*设置iconfont标签font-famile*/
-[class^="icon-"], [class*=" icon-"] {
-  font-family:"iconfont";
-  font-size:16px;
-  font-style:normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a{
-  text-decoration: none;
-  /*ios禁止页面在新窗口打开*/
-  -webkit-touch-callout:none;
-}
-body{
-  background-color: #f5f5f5;
-}
-em,i{
-  font-style: normal;
-}
-li{
-  list-style: none;
-}
-html,body{
-  height: 100%;
-}
-html{
-    font-size: calc(100vw/37.5)
-}
-.common-con-top{
-  margin-top: 88px;
+
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.ellipsis{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap
+a {
+    text-decoration: none;
+    /*ios禁止页面在新窗口打开*/
+    -webkit-touch-callout: none;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    height: 100%;
+}
+
+html {
+    font-size: calc(100vw/37.5)
+}
+
+
+.common-con-top {
+    /* margin-top: 88px; */
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#commentForm .form-group .col-xs-8, #commentForm .form-group .col-xs-12{
+    padding-left:0;
+    padding-right:0;
+}
+
+.col-xs-8 {
+    width: 66.66666667%;
+}
+.col-xs-3 {
+    width: 25%;
+}
+.col-xs-4 {
+    width: 33.33333333%;
+}
+.col-xs-12 {
+    width: 100%;
+    padding-left:0;
+    padding-right:0;
+}
+.col-xs-9 {
+    width: 75%;
+}
+.col-xs-6 {
+    width: 50%;
+}
+.clearfix{overflow:auto;_height:1%}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555!important;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    
+}
+/* 表单公共样式 */
+.ver_form{
+    /* min-height: 100vh; */
+    background-color: #fff;
+}
+
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+#mask,
+#mask1 {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    max-width: 1024px;
+    z-index: 23;
+}
+
+#mask1 {
+    background: rgba(0, 0, 0, .5);
+    z-index: 23;
+}
+/* 按钮底部公共样式 */
+.comment_next {
+    width: 91.5%;
+    position: absolute;
+    left: 50%;
+    margin-left: -45.725%;
+    bottom: 3.5%;
 }

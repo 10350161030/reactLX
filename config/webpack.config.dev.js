@@ -11,7 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
-const px2rem = require('postcss-px2rem');
+// const px2rem = require('postcss-px2rem');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -134,12 +134,12 @@ module.exports = {
                     // smaller than specified limit in bytes as data URLs to avoid requests.
                     // A missing `test` is equivalent to a match.
                     {
-                        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
                         loader: require.resolve('url-loader'),
-                        options: {
-                            limit: 10000,
-                            name: 'static/images/[name].[ext]',
-                        },
+                        // options: {
+                        //     limit: 10000,
+                        //     name: 'static/images/[name].[ext]',
+                        // },
                     },
                     // Process JS with Babel.
                     {
@@ -186,7 +186,7 @@ module.exports = {
                                             ],
                                             flexbox: 'no-2009',
                                         }),
-                                        px2rem({remUnit: 75})//设计稿根据750px(iphone6)
+                                        // px2rem({remUnit: 75})//设计稿根据750px(iphone6)
                                     ],
                                 },
                                 

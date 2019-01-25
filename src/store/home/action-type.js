@@ -4,3 +4,5 @@ export const SAVEFORMDATA = 'SAVEFORMDATA';
 export const SAVEIMG = 'SAVEIMG';
 // 清空数据
 export const CLEARDATA = 'CLEARDATA';
+// 获取登录信息
+export const ISLOGIN = 'ISLOGIN';

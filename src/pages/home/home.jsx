@@ -1,229 +1,229 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { is, fromJS } from 'immutable';
 import PropTypes from 'prop-types';
 import API from '@/api/api';
-import envconfig from '@/envconfig/envconfig';
-import { saveFormData, saveImg, clearData } from '@/store/home/action';
-import { clearSelected } from '@/store/production/action';
-import PublicHeader from '@/components/header/header';
+// import envconfig from '@/envconfig/envconfig';
+import { isUserLogin } from '@/store/main/action';
+// import { clearSelected } from '@/store/production/action';
+// import PublicHeader from '@/components/header/header';
+import PublicFooter from '@/components/footer/footer';
+
 import PublicAlert from '@/components/alert/alert';
-import TouchableOpacity from '@/components/TouchableOpacity/TouchableOpacity';
+// import TouchableOpacity from '@/components/TouchableOpacity/TouchableOpacity';
 import mixin, { padStr } from '@/utils/mixin';
 import './home.less';
-import axios from "axios";
-import fs from "fs";
 import wx from 'weixin-js-sdk';
-import { Button } from 'react-weui';
+// import { Button } from 'react-weui';
 import Swiper from 'swiper/dist/js/swiper.js';
 import 'swiper/dist/css/swiper.min.css';
+import testJson from "@/api/database.json";/* 文案 */
+import newUerImg from "@/images/indexComment/success_5s.svg"
 
+import { Button } from 'antd-mobile';
 
-import testJson from "@/api/database.json";
-const requireContext = require.context("@/image/index",false, (/^\.\/.*?(gif|png|jpg)$/));
-const projectImgs = requireContext.keys();
-let IMGList=[];
-
-projectImgs.forEach(function(value,index){
-    IMGList.push(value.replace("./","@/image/index/"));
+/* icon图片列表 */
+const requireIconContext = require.context("@/images/index_icon/", true, (/^\.\/.*?(gif|png|jpg)$/));
+const indexIconImgs = requireIconContext.keys().map(requireIconContext);
+let indexIcon = [];
+indexIconImgs.forEach(function (value, index) {
+    let varObj = {};
+    varObj["pic"] = value;
+    varObj["url"] = testJson.IndexIcon[index].url;/* banner图链接 */
+    varObj["title"] = testJson.IndexIcon[index].title;/* banner标题 */
+    varObj["text"] = testJson.IndexIcon[index].text;/* banner文字说明 */
+    indexIcon.push(varObj);
 });
 
-console.log(IMGList);
-
+/* 应用banner图 */
+const requireContextNmae = require.context("@/images/indexs/", true, (/^\.\/.*?(gif|png|jpg)$/));
+const projectImgs = requireContextNmae.keys().map(requireContextNmae);
+let IMGList = [];
+projectImgs.forEach(function (value, index) {
+    let varObj = {};
+    varObj["pic"] = value;
+    varObj["url"] = testJson.more[index];/* banner图链接 */
+    IMGList.push(varObj);
+});
 
 // mixin({ padStr })
 class Home extends Component {
     static propTypes = {
         formData: PropTypes.object.isRequired,
-        saveFormData: PropTypes.func.isRequired,
-        saveImg: PropTypes.func.isRequired,
-        clearData: PropTypes.func.isRequired,
-        clearSelected: PropTypes.func.isRequired,
+        isUserLogin: PropTypes.func.isRequired,
     }
-
+    /* tost 公共状态 */
     state = {
         alertStatus: false, //弹框状态
-        alertTip: '', //弹框提示文字
+        alertTip: "信息提醒",
+        bindEQStatus: false,/* 绑定设备弹窗 */
+        bgMask: false,/* 背景遮罩状态 */
+        newUserAlert: false,/* 新用户福利弹窗 */
     }
-    /**
-     * 已选择的商品数据
-     * @type {Array}
-     */
-    selectedProList = [];
-
-    /**
-     * 将表单数据保存至redux，保留状态
-     * @param  {string} type  数据类型 orderSum||name||phoneNo
-     * @param  {object} event 事件对象
-     */
-    handleInput = (type, event) => {
-        let value = event.target.value;
-        switch (type) {
-            case 'orderSum':
-                value = value.replace(/\D/g, '');
-                break;
-            case 'name':
-                break;
-            case 'phoneNo':
-                value = this.padStr(value.replace(/\D/g, ''), [3, 7], ' ', event.target);
-                break;
-            default: ;
+    /* 关闭新用户福利 */
+    closeNewUserFun = () => {
+        this.setState({
+            newUserAlert: false,/* 新用户福利弹窗 */
+            bgMask: false,
+        })
+    }
+    closeAlertFun = () => {
+        const that = this;
+        if (this.timer) {
+            clearTimeout(this.timer);
         }
-        this.props.saveFormData(value, type);
+        this.timer = setTimeout(() => {
+            that.setState({
+                alertStatus: false,
+            });
+        }, 4000);
     }
-
-    /*
-    上传图片，并将图片地址存到redux，保留状态
-     */
-    uploadImg = async event => {
+    /* 绑定设备方法 */
+    bindEQFun = () => {
+        if (!this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin) {
+            console.log(44);
+            this.setState({
+                bindEQStatus: true,
+                bgMask: true,
+            })
+        }
+    }
+    /* 点击遮罩关闭 */
+    closeMask = () => {
+        this.setState({
+            bindEQStatus: false,
+            bgMask: false,
+            newUserAlert: false,/* 新用户福利弹窗 */
+        })
+    }
+    /* 点击领取流量 */
+    getGitFlow = async type => {
         try {
-            let formdata = new FormData();
-            formdata.append('file', event.target.files[0]);
-            let result = await API.uploadImg({ data: formdata });
-            this.props.saveImg(envconfig.imgUrl + result.image_path);
-            console.log(result);
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-
-
-    
-    // 提交表单
-    sumitForm = () => {
-        const { orderSum, name, phoneNo } = this.props.formData;
-        let alertTip = '';
-        if (!orderSum.toString().length) {
-            alertTip = '请填写金额';
-        } else if (!name.toString().length) {
-            alertTip = '请填写姓名';
-        } else if (!phoneNo.toString().length) {
-            alertTip = '请填写正确的手机号';
-        } else {
-            alertTip = '添加数据成功';
-            this.props.clearSelected();
-            this.props.clearData();
-        }
-        this.setState({
-            alertStatus: true,
-            alertTip,
-        })
-    }
-
-    // 关闭弹款
-    closeAlert = () => {
-        this.setState({
-            alertStatus: false,
-            alertTip: '',
-        })
-    }
-
-    // 初始化数据，获取已选择的商品
-    initData = props => {
-        this.selectedProList = [];
-        props.proData.dataList.forEach(item => {
-            if (item.selectStatus && item.selectNum) {
-                this.selectedProList.push(item);
+            let result = await API.newGitFlowFun({ type });
+            if (result.code === "CD000001") {
+                this.setState({
+                    alertStatus: true,
+                    alertTip: "领取成功",
+                    bgMask: false,
+                    newUserAlert: false,/* 新用户福利弹窗 */
+                })
+                this.closeAlertFun();
+            } else {
+                this.setState({
+                    alertStatus: true,
+                    alertTip: result.msg,
+                })
+                this.closeAlertFun();
             }
-        })
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (!is(fromJS(this.props.proData), fromJS(nextProps.proData))) {
-            this.initData(nextProps);
+        } catch (err) {
+            this.setState({
+                alertStatus: true,
+                alertTip: "服务器异常"
+            })
+            this.closeAlertFun();
         }
     }
+
+
 
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
-
     componentWillMount() {
-        this.initData(this.props);
+        this.props.isUserLogin();
+    }
+    componentWillReceiveProps(nextProps) {
+        /* 异步判断是否登录异常 */
+        if (nextProps.formData.LoginError.code) {
+            this.setState({
+                alertStatus: true,
+                alertTip: nextProps.formData.LoginError.code
+            })
+            this.closeAlertFun();
+        }
+        /* 判断新用户福利 */
+        if (nextProps.formData.LoginData.isLogin && nextProps.formData.LoginData.isBind && nextProps.formData.LoginData.giftSwitch && !nextProps.formData.LoginData.isGiveFlow && nextProps.formData.LoginData.supplier) {
+            this.setState({
+                newUserAlert: true,
+                bgMask: true,
+            })
+        }
     }
     componentDidMount() {
-
-        console.log(testJson);
-
-       let mySwiper = new Swiper('#index_banner1',{
+        let mySwiper = new Swiper('#index_banner1', {
             loop: true,     //循环
-            autoplay:{      //自动播放，注意：直接给autoplay:true的话，在点击之后不能再自动播放了
-                delay: 2500,
-                disableOnInteraction: false,    //户操作swiper之后，是否禁止autoplay。默认为true：停止。
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,    // 允许点击跳转
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-       });
+            autoplay: {      //自动播放，注意：直接给autoplay:true的话，在点击之后不能再自动播放了
+                delay: 4500,
+                disableOnInteraction: false,    //户操作swiper之后，是否禁止autoplay。默认为true：停止。
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,    // 允许点击跳转
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
     }
-
     render() {
-        // const bannerImg = this.props.bannerImg;
+        console.log("外render");
         return (
             <main className="home-container">
-                <PublicHeader title='首页' record />
-
-
-                {/* <div className="swiper-container">
-                    <div className="swiper-wrapper">
-                        {bannerImg.map((item,index)=>(
-                            <div key={index} className="swiper-slide" style={{backgroundImage:`url(${item})`}}></div>
-                        ))}
-                    </div>
-                    <div className='swiper-pagination'></div>
-                    <div className='swiper-button-warp'>    
-                        <div className="swiper-button-next"></div>
-                        <div className="swiper-button-prev"></div>
-                    </div>
-                </div> */}
-
-                <Button className="blueColor">hello wechat</Button>
-                <p className="common-title">请录入您的信息</p>
-                <form className="home-form">
-                    <div className="home-form-tiem">
-                        <span>销售金额：</span>
-                        <input type="text" placeholder="请输入订单金额" value={this.props.formData.orderSum} onChange={this.handleInput.bind(this, 'orderSum')} />
-                    </div>
-                    <div className="home-form-tiem">
-                        <span>客户姓名：</span>
-                        <input type="text" placeholder="请输入客户姓名" value={this.props.formData.name} onChange={this.handleInput.bind(this, 'name')} />
-                    </div>
-                    <div className="home-form-tiem">
-                        <span>客户电话：</span>
-                        <input type="text" maxLength="13" placeholder="请输入客户电话" value={this.props.formData.phoneNo} onChange={this.handleInput.bind(this, 'phoneNo')} />
-                    </div>
-                </form>
-                <div>
-                    <p className="common-title">请选择销售的产品</p>
-                    <Link to="/production" className="common-select-btn">
+                <Button type="primary">alsdkja;djsadjsfjpoqjwelkjqf</Button>
+                {
+                    this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin && !this.props.formData.LoginData.isAuthFinish && <a href="/base/01/realNameAuth" className="index_4Gtitle">{testJson.IndexAuthentication[0]}<br />
+                        <strong >{this.props.formData.LoginData.isCustomized ? testJson.IndexAuthentication[1] : (this.props.formData.LoginData.isGiveFlow ? testJson.IndexAuthentication[2] : testJson.IndexAuthentication[3])}</strong>
+                    </a>
+                }
+                <div className="swiper-container" id="index_banner1" ><div className="swiper-wrapper">{IMGList.map((item, index) => (<div key={index} className="swiper-slide" ><a href={item.url}><img src={item.pic} alt="banner图" /></a></div>))}</div><div className='swiper-pagination'></div></div>
+                <div className="base">
+                    <div className="base_connent">
                         {
-                            this.selectedProList.length ? <ul className="selected-pro-list">
-                                {
-                                    this.selectedProList.map((item, index) => {
-                                        return <li key={index} className="selected-pro-item ellipsis">{item.product_name}x{item.selectNum}</li>
-                                    })
-                                }
-                            </ul> : '选择产品'
+                            indexIcon.map((value, index) => (
+                                <a className="base_connent_flax" href={(!this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin) ? "javascript:;" : value.url} onClick={this.bindEQFun.bind(this)} key={index} >
+                                    <div className="base_connent_icon">
+                                        <img src={value.pic} />
+                                    </div>
+                                    <div className="base_connent_text">
+                                        <h2>{value.title}</h2>
+                                        <p>{value.text}</p>
+                                    </div>
+                                </a>
+                            ))
                         }
-                    </Link>
-                </div>
-                <div className="upload-img-con">
-                    <p className="common-title">请上传发票凭证</p>
-                    <div className="file-lable">
-                        <span className="common-select-btn">上传图片</span>
-                        <input type="file" onChange={this.uploadImg} />
                     </div>
-                    <img src={this.props.formData.imgpath} className="select-img" alt="" />
                 </div>
-                <TouchableOpacity className="submit-btn" clickCallBack={this.sumitForm} text="提交" />
-                <PublicAlert closeAlert={this.closeAlert} alertTip={this.state.alertTip} alertStatus={this.state.alertStatus} />
+
+                {this.state.bgMask && <a href="javascript:;" id="mask1" onClick={this.closeMask.bind(this)} ></a>}
+                {/* 绑定设备弹窗 */}
+                {
+                    this.state.bindEQStatus && <div id="alert_stylebox">
+                        <div className="alert_stylemain">
+                            <h3>{testJson.bindEQStatus[0]}</h3>
+                            <p>{testJson.bindEQStatus[1]}</p>
+                        </div>
+                        <NavLink to="/person" className="alert_stylebtn">{testJson.bindEQStatus[2]}</NavLink>
+                    </div>
+                }
+                {/* 新用户福利弹窗 */}
+                {
+                    this.state.newUserAlert && <div id="alert_stylebox2">
+                        <div className="imgbox_5s">
+                            <img src={newUerImg} alt="" />
+                        </div>
+                        <div className="alert_stylemain">
+                            <h3>设备绑定成功</h3>
+                            <p>快去领取新用户福利吧!</p>
+                        </div>
+                        <a href="javascript:;" onClick={this.closeNewUserFun.bind(this)} className="alert_stylebtn ">暂不领取</a>
+                        <a href="javascript:;" onClick={this.getGitFlow.bind(this)} className="alert_stylebtn ">领取流量</a>
+                    </div>
+                }
+                {!this.props.formData.LoginData.isLogin && <NavLink href="javascript:;" to="/register" id="mask"></NavLink>}
+                <PublicFooter></PublicFooter>
+                <PublicAlert alertStatus={this.state.alertStatus} alertTip={this.state.alertTip} />
             </main>
         );
     }
@@ -231,10 +231,6 @@ class Home extends Component {
 
 export default connect(state => ({
     formData: state.formData,
-    proData: state.proData,
 }), {
-        saveFormData,
-        saveImg,
-        clearData,
-        clearSelected,
+        isUserLogin,
     })(Home);

@@ -1,41 +1,117 @@
-@import (reference) "../../style/mixin.less";
-
-.alert-con{
-  .coverScreen(fixed, rgba(0, 0, 0, 0.3));
-  z-index: 11;
-}
-.alert-context{
-  .positionCenter;
-  z-index: 12;
-  .wh(600px, 360px);
-  background-color: #fff;
-  border-radius: 16px;
-  .flex(@align-items: stretch);
-  flex-direction: column;
-  .alert-content-detail{
-    flex: 5;
-    .flex;
-    .font(40px);
-  }
-  .confirm-btn{
-    flex: 2;
-    .flex;
-    .font(40px);
-    border-top: 1PX solid #eee;
-  }
-}
-.alert-enter{
-  opacity: 0;
-}
-.alert-enter.alert-enter-active{
-  transition: all 300ms;
-  opacity: 1;
+.alert_error {
+    height: 3rem;
+    line-height: 3rem;
+    position: fixed;
+    bottom: 12.6rem;
+    left: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    border-radius: .5rem;
+    width: 100%;
+    animation: erroralert .2s ease-in-out;
+    z-index: 9992;
 }
 
-.alert-leave{
-  opacity: 1;
+.alert_error span {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: .5rem;
+    padding: .7rem 1rem;
+    font-size: 1.2rem;
 }
-.alert-leave.alert-leave-active{
-  transition: all 300ms;
-  opacity: 0;
+/*错误信息弹出动画*/
+
+@keyframes erroralert {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    25% {
+        opacity: .25;
+        bottom: 31.5px;
+    }
+    50% {
+        opacity: .5;
+        bottom: 63px;
+    }
+    75% {
+        opacity: .75;
+        bottom: 94.5px;
+    }
+    100% {
+        opacity: 1;
+        bottom: 126px;
+    }
+}
+
+@-moz-keyframes erroralert {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    25% {
+        opacity: .25;
+        bottom: 31.5px;
+    }
+    50% {
+        opacity: .5;
+        bottom: 63px;
+    }
+    75% {
+        opacity: .75;
+        bottom: 94.5px;
+    }
+    100% {
+        opacity: 1;
+        bottom: 126px;
+    }
+}
+
+@-webkit-keyframes erroralert {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    25% {
+        opacity: .25;
+        bottom: 31.5px;
+    }
+    50% {
+        opacity: .5;
+        bottom: 63px;
+    }
+    75% {
+        opacity: .75;
+        bottom: 94.5px;
+    }
+    100% {
+        opacity: 1;
+        bottom: 126px;
+    }
+}
+
+@-o-keyframes erroralert {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    25% {
+        opacity: .25;
+        bottom: 31.5px;
+    }
+    50% {
+        opacity: .5;
+        bottom: 63px;
+    }
+    75% {
+        opacity: .75;
+        bottom: 94.5px;
+    }
+    100% {
+        opacity: 1;
+        bottom: 126px;
+    }
 }

@@ -3,10 +3,20 @@ import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import asyncComponent from '../utils/asyncComponent';
 
 import home from "@/pages/home/home";
-const record = asyncComponent(() => import("@/pages/record/record"));
-const helpcenter = asyncComponent(() => import("@/pages/helpcenter/helpcenter"));
-const production = asyncComponent(() => import("@/pages/production/production"));
-const balance = asyncComponent(() => import("@/pages/balance/balance"));
+const login = asyncComponent(() => import("@/pages/login/login"));
+const repassword = asyncComponent(() => import("@/pages/repassWord/repassWord"));
+const changephone = asyncComponent(() => import("@/pages/changephone/changephone"));
+const register = asyncComponent(() => import("@/pages/register/register"));
+const personinfo = asyncComponent(() => import("@/pages/personinfo/personinfo"));
+const person = asyncComponent(() => import("@/pages/person/person"));
+const personid = asyncComponent(() => import("@/pages/register/personid/personid"));
+const personiddetail = asyncComponent(() => import("@/pages/register/personid_detail/personid_detail"));
+
+const carinfo = asyncComponent(() => import("@/pages/register/carinfo/carinfo"));
+const carinfodetail = asyncComponent(() => import("@/pages/register/carinfodetail/carinfodetail"));
+
+const nicknameedit = asyncComponent(() => import("@/pages/personinfo/component/NicknameEdit"));
+const history = asyncComponent(() => import("@/pages/history/history"));
 
 // react-router4 不再推荐将所有路由规则放在同一个地方集中式路由，子路由应该由父组件动态配置，组件在哪里匹配就在哪里渲染，更加灵活
 export default class RouteConfig extends Component{
@@ -14,11 +24,22 @@ export default class RouteConfig extends Component{
     return(
       <HashRouter>
         <Switch>
-          <Route path="/" exact component={home} />
-          <Route path="/record" component={record} />
-          <Route path="/helpcenter" component={helpcenter} />
-          <Route path="/production" component={production} />
-          <Route path="/balance" component={balance} />
+          <Route path="/"  exact  component={home} />
+          <Route path="/login" component={login} />
+          <Route path="/repassword/:name" component={repassword} />
+          <Route path="/changephone/:name" component={changephone} />
+          <Route path="/register" component={register} />
+          <Route path="/personinfo" component={personinfo} />
+          <Route path="/nicknameedit/:name" component={nicknameedit} />
+          <Route path="/person" component={person} />
+          <Route path="/personid" component={personid} />
+          <Route path="/carinfo" component={carinfo} />
+
+           <Route path="/history" component={history} />
+
+
+          <Route path="/carinfodetail" component={carinfodetail} />
+          <Route path="/personiddetail" component={personiddetail} />
           <Redirect to="/" />
         </Switch>
       </HashRouter>

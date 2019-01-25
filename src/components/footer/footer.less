@@ -1,0 +1,74 @@
+@import (reference) "../../style/mixin.less";
+@import (reference) "../../style/reset.less";
+#publicFooter {
+    height: 5.6rem;
+    width: 100%;
+    background: rgba(255, 255, 255, 1);
+    border-top: 1px solid #e8e8e8;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 24;
+    max-width: 768px;
+    .nav {
+        width: 33.3333%;
+        float: left;
+        height: 5.6rem;
+        display: block;
+        text-align: center;
+    }
+    .nav:nth-child(3) {
+        width: 33.3334%;
+    }
+    .navImg{
+        width: 2.4rem;
+        height: 2.4rem;
+        margin: 0 auto;
+        margin-top: .8rem;
+    }
+    .nav p {
+        font-size: 1.4rem;
+        color: #B4B4B4;
+        line-height: 1.2rem;
+        margin-top: .6rem;
+    }
+    a:first-child  .navImg {
+        background: url("@{assets-img}/footer/icon_index.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+    a:nth-child(2) .navImg{
+        background: url("@{assets-img}/footer/icon_iiii.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+    a:last-child .navImg{
+        background: url("@{assets-img}/footer/icon_person.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+    .active p{
+        .cl_10AEFF;
+    }
+
+    a:first-child.active .navImg {
+        background: url("@{assets-img}/footer/icon_index_active.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+    a:nth-child(2).active .navImg{
+        background: url("@{assets-img}/footer/icon_iiii_active.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+    a:last-child.active .navImg{
+        background: url("@{assets-img}/footer/icon_person_active.png") center no-repeat;
+        background-size: 100% 100%;
+    }
+    
+}
+@media screen and (min-width: 768px) {  
+    footer {
+        left:50%;
+        margin-left: -384px;
+    }
+}
+
+ 
+
+

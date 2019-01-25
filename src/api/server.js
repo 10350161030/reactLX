@@ -16,17 +16,17 @@ import envconfig from '@/envconfig/envconfig';
 */
 
 export default class Server {
-  axios(method, url, params){
+  axios(method, url,data, params){
     return new Promise((resolve, reject) => {
       if(typeof params !== 'object') params = {};
       let _option = params;
       _option = {
         method,
         url,
+        data,
         baseURL: envconfig.baseURL,
         timeout: 30000,
         params: null,
-        data: null,
         headers: null,
         withCredentials: true, //是否携带cookies发起请求
         validateStatus:(status)=>{
