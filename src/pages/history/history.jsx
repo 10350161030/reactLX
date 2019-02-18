@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { is, fromJS } from 'immutable';
 import { connect } from 'react-redux';
 import PublicAlert from '@/components/alert/alert';
+import TipCompent from '@/components/alert/TipCompent';
 import Certificates from '@/components/Certificates/Certificates';
 import API from '@/api/api';
 import "./history.less";
@@ -11,26 +12,29 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import moment from "moment";/* 日期格式化工具类 */
 import TweenOne from 'rc-tween-one';/* 动画插件 */
+import Children from 'rc-tween-one/lib/plugin/ChildrenPlugin';
 import _ from "lodash";
 import { Map, Marker, Polyline } from 'react-amap';
 import axios from 'axios';
 
+TweenOne.plugins.push(Children);
 const now = new Date();
 const TimeName = moment().format("YYYY年MM月DD日");
 
-class Carinfodetail extends Component {
+
+class History extends Component {
 
     constructor() {
         super();
-        // this.markerEvents = {
-        //     created: (map) => {
-        //         map.setFitView();
-        //     }
-        // }
         const _this = this;
-        this.markerEvents = {
+        this.mapEvents = {
+            created(m) {
+                _this.map = m;
+            }
+        }
+        this.lineEvents = {
             created: (markers) => {
-                markers.setFitView();
+                _this.map.setFitView(markers);
             }
         }
     }
@@ -61,6 +65,7 @@ class Carinfodetail extends Component {
         startMarkPosition: [],
         endMarkPosition: [],
         markerState: false,
+        mapState: false,
         mapPath: [],
         MaplineStyle: {
             strokeColor: "#3366FF", // 线颜色
@@ -68,8 +73,8 @@ class Carinfodetail extends Component {
             strokeWeight: 5, // 线宽
             strokeStyle: "solid", // 线样式
             strokeDasharray: [10, 5],
-        }
-
+        },
+        animation: null,/* 动画效果 */
     }
     /* 自动关闭弹窗 */
     closeAlertFun = () => {
@@ -101,6 +106,7 @@ class Carinfodetail extends Component {
         });
         this.gethistotyList(moment(startTime).format("YYYYMMDD"));
     }
+    /* 下一天 */
     nextFun = (e) => {
         let thisTime = this.state.TimeValue;
 
@@ -119,6 +125,7 @@ class Carinfodetail extends Component {
             console.log("其他");
         }
     }
+    /* 上一天 */
     prveFun = (e) => {
         let thisTime = this.state.TimeValue;
         let prveTime = new Date(thisTime.getFullYear(), thisTime.getMonth(), thisTime.getDate() - 1);
@@ -135,6 +142,7 @@ class Carinfodetail extends Component {
             console.log("其他");
         }
     }
+    /* 获取历史数据某天列表 */
     gethistotyList = async type => {
         try {
             let result = await API.gethistoryList({
@@ -205,6 +213,7 @@ class Carinfodetail extends Component {
             this.closeAlertFun();
         }
     }
+    /* 获取所有有数据的日期列表 */
     getDateList = async type => {
         try {
             let result = await API.getDateList({
@@ -216,9 +225,12 @@ class Carinfodetail extends Component {
                 let dateList = {};
                 result.body.trackDateList.map((value) => {
                     if (value.datastt != "99") {
+                        console.log(value.datastt);
                         let monthValue = parseFloat(value.datatime.substring(4, 6)) - 1;
                         let dataValue = parseFloat(value.datatime.substring(6, 8));
                         dateList[+new Date(value.datatime.substring(0, 4), monthValue, dataValue)] = { info: '•', selected: true };
+                    } else {
+                        // console.log(value);
                     }
                 });
                 Object.keys(dateList).forEach((key) => {
@@ -246,7 +258,7 @@ class Carinfodetail extends Component {
             this.closeAlertFun();
         }
     }
-
+    /* 调起地图 */
     showMap = async type => {
         console.log("调用打开地图");
         try {
@@ -274,6 +286,7 @@ class Carinfodetail extends Component {
                         endMarkPosition: _.last(lineArr),
                         position: [centerY, centerX],
                         mapPath: lineArr,
+                        mapState: true,
                     });
                     this.markerEvents = {
                         created: (map) => {
@@ -281,11 +294,11 @@ class Carinfodetail extends Component {
                             map.setFitView();
                         }
                     }
+
                 } else {
-                    // this.setState({
-                    //     alertStatus: true,
-                    //     alertTip: result.msg,
-                    // })
+                    this.setState({
+                        mapState: true,
+                    })
                     // this.closeAlertFun();
                     this.defaultMap();
                 }
@@ -300,7 +313,56 @@ class Carinfodetail extends Component {
             this.closeAlertFun();
         }
     }
+    /* 关闭地图 */
+    closeMap = () => {
+        this.setState({
+            mapState: false,
+        })
+    }
+    // 删除历史轨迹
+    deleMapdata = type => {
+       
+       const alertInstance = Modal.alert('删除提示', '轨迹删除后，无法恢复哦！', [
+            {
+                text: '取消', onPress: () => {
+                   
+                }, style: 'default'
+            },
+            {
+                text: '确定', onPress:async  () => {
+                    Toast.loading('数据删除中', 10000000);
+                   
+                    try {
+                        let result = await API.deleMapdata({
+                            "business": "track_analysis",
+                            "dateTime": String(type),
+                            "channel": "wechat",
+                        });
+                        console.log(result);
+                        console.log(result.data);
+                        if (result.code === 'CD000001') {
+                            this.gethistotyList(moment(this.state.TimeValue).format('YYYYMMDD'));
+                            this.getDateList();
+                            Toast.info('轨迹已经删除', 3);
+                        } else {
+                            Toast.info('删除失败，请重试', 3);
+                        }
+                       
+                    } catch (err) {
+                        Toast.hide()
+                        this.setState({
+                            alertStatus: true,
+                            alertTip: "服务器异常"
+                        })
+                        this.closeAlertFun();
+                    }
+                    
+                }
+            },
+        ]);
+        
 
+    }
 
     /* 获取地图默认中心点 */
     defaultMap = async type => {
@@ -338,77 +400,72 @@ class Carinfodetail extends Component {
             });
         }, 500, 'ok');
     }
-
+    /* 首次加载当天历史轨迹 */
     componentWillMount() {
         this.gethistotyList(moment().format('YYYYMMDD'));
         this.getDateList();
-        this.showMap();
     }
     componentDidMount() {
 
     }
     componentWillReceiveProps(nextProps) {
         // console.log("拿到redux数据");
-        if (nextProps.brandData.brandDataError.msg) {
+        // if (nextProps.brandData.brandDataError.msg) {
+        //     this.setState({
+        //         alertStatus: true,
+        //         alertTip: nextProps.brandData.brandDataError.msg
+        //     })
+        //     this.closeAlertFun();
+        // } else {
+        //     // console.log("父组件触发");
+        //     this.setState({
+        //     });
 
-            this.setState({
-                alertStatus: true,
-                alertTip: nextProps.brandData.brandDataError.msg
-            })
-            this.closeAlertFun();
-        } else {
-            // console.log("父组件触发");
-            this.setState({
-
-            });
-
-        }
+        // }
     }
     componentWillUpdate() {
 
     }
+    /* 避免多次渲染 */
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState));
     }
+    /* 格式化显示日期 */
     getDateExtra = date => {
         return this.state.extra[+date];
     };
-
-    stateMarkerdiv = () => {
-
-    }
-    endMarkerdiv = () => { }
     render() {
-        console.log(this.state.startMarkPosition);
-        console.log(this.state.endMarkPosition);
-        console.log("渲染次数");
         return (
-            <main className="common-con-top">
-                <div id="container">
-                    <Map amapkey="c823911f82ee642a5322f8dafcbbeaac" events={this.markerEvents}>
-                        {
-                            this.state.markerState && <Marker position={this.state.startMarkPosition}
-                                offset={this.state.startMark}
+            <main className="common-con-top"  id="history">
+                <TipCompent></TipCompent>
+                {
 
-                            >
-                                <div className="marker-route map_start"></div>
-                            </Marker>
-                        }
+                    this.state.mapState && <div id="container">
+                        <Map amapkey="c823911f82ee642a5322f8dafcbbeaac"  events={this.mapEvents}>
+                            {
+                                this.state.markerState && <Marker position={this.state.startMarkPosition}
+                                    offset={this.state.startMark}
 
-                        <Polyline path={this.state.mapPath} style={this.state.MaplineStyle} />
-                        {
-                            this.state.markerState && <Marker position={this.state.endMarkPosition}
-                                offset={this.state.endMark}
-                            >
-                                <div className="marker-route map_end"></div>
-                            </Marker>
-                        }
-                    </Map>
-                    <p></p>
-                    <p></p>
-                </div>
-                <div id="mask1"></div>
-                <div className="tip">用车过程中保持网络连接，才能获取准确的位置</div>
+                                >
+                                    <div className="marker-route map_start"></div>
+                                </Marker>
+                            }
+
+                            <Polyline path={this.state.mapPath} events={this.lineEvents} style={this.state.MaplineStyle} />
+                            {
+                                this.state.markerState && <Marker position={this.state.endMarkPosition}
+                                    offset={this.state.endMark}
+                                >
+                                    <div className="marker-route map_end"></div>
+                                </Marker>
+                            }
+                        </Map>
+                    </div>
+                }
+                {
+                    this.state.mapState && <div id="mask1" onClick={this.closeMap.bind(this)}></div>
+                }
+
                 <Calendar
                     visible={this.state.canderShow}
                     onCancel={this.onCancel}
@@ -421,8 +478,6 @@ class Carinfodetail extends Component {
                     type="one"
                     defaultValue={[new Date(+this.state.TimeValue), new Date(this.state.TimeValue)]}
                 />
-
-
                 <div id="history__body">
                     <div id="stuck" className="weui-flex text-white history-top navbar navbar-default navbar-fixed-top navbar-wrapper">
                         <div>
@@ -457,7 +512,10 @@ class Carinfodetail extends Component {
                             <div className="white-bg fh-100 fw-100 b-r-xll">
                                 <span>行驶里程
                                     <strong className="counter" id="totalMileage">
-                                        {this.state.iTotKm}
+                                        <TweenOne animation={{
+                                            Children: { value: this.state.iTotKm, floatLength: 0, formatMoney: true }
+                                        }}>
+                                        </TweenOne>
                                     </strong>km
                                 </span>
                             </div>
@@ -465,15 +523,20 @@ class Carinfodetail extends Component {
                         <div className="weui-flex__item">
                             <span className="border-right">耗时
                                 <strong className="counter" id="totalDuration">
-                                    {this.state.iTotMin}
-
+                                    <TweenOne animation={{
+                                        Children: { value: this.state.iTotMin, floatLength: 0, formatMoney: true }
+                                    }}>
+                                    </TweenOne>
                                 </strong>min
                             </span>
                         </div>
                         <div className="weui-flex__item">
                             <span>时速
                                 <strong className="counter" id="averageSpeed">
-                                    {this.state.iAvgSpeed}
+                                    <TweenOne animation={{
+                                        Children: { value: this.state.iAvgSpeed, floatLength: 0, formatMoney: true }
+                                    }}>
+                                    </TweenOne>
                                 </strong>km/h
                             </span>
                         </div>
@@ -552,7 +615,7 @@ class Carinfodetail extends Component {
                                     <p className="weui-footer__text">由鎏信云卡提供信息安全保护</p>
                                     <div className="weui-flex p-sm">
                                         <div className="weui-flex__item">
-                                            <button id="show-delete" className="weui-btn weui-btn_success">删除当天轨迹</button>
+                                            <button id="show-delete" onClick={this.deleMapdata.bind(this)} className="weui-btn weui-btn_success">删除当天轨迹</button>
                                         </div>
                                     </div>
                                 </div>
@@ -579,4 +642,4 @@ export default withRouter(connect(state => ({
         getBrandData,
         brandZJState,
         saveFormData,
-    })(Carinfodetail));
+    })(History));

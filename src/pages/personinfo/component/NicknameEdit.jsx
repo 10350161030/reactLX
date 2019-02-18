@@ -95,7 +95,7 @@ class NicknameEdit extends Component {
 
     render() {
         return (
-            <main className="home-container">
+            <main className="home-container" id="nickname">
                 <div className="nincheng">
                     <div className="nincheng_tosat">修改完成后，记得点击按钮保存哦～</div>
                     <div className="weui-cells">

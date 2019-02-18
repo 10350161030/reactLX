@@ -1,125 +1,128 @@
 @import (reference) "../../style/mixin.less";
 @import (reference) "../../style/reset.less";
 
-body{
-    background-color: #f5f5f9!important;
-}
-.personalinfo_head{
-    width: 100%;
-    height: 56px;
-    padding-right: 0;
-    background: #fafafa;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    .personalinfo_headtext{
+#personinfo{
+        
+    body{
+        background-color: #f5f5f9!important;
+    }
+    .personalinfo_head{
+        width: 100%;
         height: 56px;
-        color: #fff;
         padding-right: 0;
-        .am-list-extra{
-           padding-top:0!important;
-           padding-bottom:0!important;
-           height: 56px;
-            img{
-                margin-top: 8px;
-                width: 40px!important;
-                height: 40px;
-                border-radius: 50px;
-                overflow: hidden;
-                padding-right: 0;
-                padding-left: 0;
+        background: #fafafa;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        .personalinfo_headtext{
+            height: 56px;
+            color: #fff;
+            padding-right: 0;
+            .am-list-extra{
+            padding-top:0!important;
+            padding-bottom:0!important;
+            height: 56px;
+                img{
+                    margin-top: 8px;
+                    width: 40px!important;
+                    height: 40px;
+                    border-radius: 50px;
+                    overflow: hidden;
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+            
             }
-           
+        }
+        .am-list-item .am-list-line .am-list-content{
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #404040;
+        }
+        .am-list{
+            padding-right: 1.5rem;
         }
     }
-    .am-list-item .am-list-line .am-list-content{
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #404040;
+    .ibox {
+        clear: both;
+        width: 100%;
+        margin-top: 0;
+        padding: 0;
+        margin-bottom: 10px;
+        background: #fafafa;
+        .am-list-item .am-list-line .am-list-content{
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #404040;
+        }
+        .am-list-item .am-list-line .am-list-extra{
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #777;
+            line-height: 24px;
+        }
     }
-    .am-list{
-        padding-right: 1.5rem;
+    #file {
+        width: 100%;
+        height: 56px;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
-}
-.ibox {
-    clear: both;
-    width: 100%;
-    margin-top: 0;
-    padding: 0;
-    margin-bottom: 10px;
-    background: #fafafa;
-    .am-list-item .am-list-line .am-list-content{
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #404040;
+
+
+    /*头像截取*/
+
+    .photocli_box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #666;
+        z-index: 20;
+        max-width: 768px;
     }
-    .am-list-item .am-list-line .am-list-extra{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #777;
-        line-height: 24px;
+
+
+
+    #clipArea {
+        width: 100%;
+        height: 100vh;
     }
-}
-#file {
-    width: 100%;
-    height: 56px;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 
+    .photoclip_tool {
+        position: fixed;
+        width: 100%;
+        height: 50px;
+        background-color: #FFF;
+        line-height: 50px;
+        bottom: 0;
+        left: 0;
+        max-width: 768px;
+    }
 
-/*头像截取*/
-
-.photocli_box {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #666;
-    z-index: 20;
-    max-width: 768px;
-}
-
-
-
-#clipArea {
-    width: 100%;
-    height: 100vh;
-}
-
-.photoclip_tool {
-    position: fixed;
-    width: 100%;
-    height: 50px;
-    background-color: #FFF;
-    line-height: 50px;
-    bottom: 0;
-    left: 0;
-    max-width: 768px;
-}
-
-#clipBtn,
-#clipBtn2 {
-    height: 30px;
-    margin: 10px 10px 0 5px;
-    width: 80px;
-    line-height: 30px;
-    padding: 0;
-    text-align: center;
-    color: #333;
-    float: right;
-    background-color: #fff;
-    border-color: #ccc;
-}
-// #clipBtn2{
-//     .fl;
-// }
-@media screen and (min-width:768px) {
-    .photocli_box,.photoclip_tool{
-        left:50%;
-        margin-left:-384px;
+    #clipBtn,
+    #clipBtn2 {
+        height: 30px;
+        margin: 10px 10px 0 5px;
+        width: 80px;
+        line-height: 30px;
+        padding: 0;
+        text-align: center;
+        color: #333;
+        float: right;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+    // #clipBtn2{
+    //     .fl;
+    // }
+    @media screen and (min-width:768px) {
+        .photocli_box,.photoclip_tool{
+            left:50%;
+            margin-left:-384px;
+        }
     }
 }
 

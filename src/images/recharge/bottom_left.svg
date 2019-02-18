@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>分割/3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="115.504809%" y1="-7.55087823%" x2="0%" y2="113.012945%" id="linearGradient-1">
+            <stop stop-color="#00C2EB" offset="0%"></stop>
+            <stop stop-color="#3A7BD5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="分割/3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <path d="M2,13 L6,2" id="Path-11" stroke="url(#linearGradient-1)" stroke-width="3"></path>
+        <path d="M10,13 L14,2" id="Path-11" stroke="url(#linearGradient-1)" stroke-width="3" opacity="0.5"></path>
+    </g>
+</svg>

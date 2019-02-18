@@ -66,8 +66,8 @@ class PersonidDetail extends Component {
     }
     render() {
         return (
-            <main className="common-con-top">
-                <div id="psID_detail" className="psID_detailBox">
+            <main className="common-con-top" id="psID_detail">
+                <div  className="psID_detailBox">
                     <div className="psID_detail_tip">
                         <p>
                             <i className="CD_tipicon"></i>识别成功，请核对以下信息</p>

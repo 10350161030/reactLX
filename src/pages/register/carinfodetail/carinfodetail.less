@@ -1,115 +1,121 @@
-body {
-    min-height: 100vh;
-    background: #eee!important;
-    position: relative;
-}
-.ver_form{
-    background-color: #eee!important;
-}
-.weui-cells {
-    margin-top: 1.17647em;
-    background-color: rgb(255, 255, 255);
-    line-height: 1.41176;
-    font-size: 17px;
-    position: relative;
-    overflow: hidden;
-}
-.weui-cell {
-    position: relative;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    padding: 10px 15px;
-}
-.weui-cell__bd {
-    -webkit-box-flex: 1;
-    flex: 1 1 0%;
-}
-.weui-cell__ft {
-    text-align: right;
-    color: rgb(153, 153, 153);
-}
-.weui-cell::before {
-    content: " ";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    height: 1px;
-    color: rgb(217, 217, 217);
-    transform-origin: 0px 0px 0px;
-    transform: scaleY(0.5);
-    left: 15px;
-    background: #d9d9d9;
-}
-.weui-btn_plain-default {
-    color: rgb(53, 53, 53);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(53, 53, 53);
-    border-image: initial;
-}
-.weui-btn {
-    position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 14px;
-    padding-right: 14px;
-    box-sizing: border-box;
-    font-size: 18px;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    line-height: 2.55556;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    text-decoration: none;
-    border-radius: 5px;
-    overflow: hidden;
-}
-.weui-popup__overlay {
-    background-color: rgba(0,0,0,.6);
-    /* opacity: 0; */
-    -webkit-transition: opacity .3s;
-    transition: opacity .3s;
-}
-
-.weui-popup__modal {
-    width: 100%;
-    position: absolute;
-    z-index: 100;
-    /* bottom: 0; */
-    border-radius: 0;
-    /* opacity: .6; */
-    color: #3d4145;
-    /* -webkit-transition-duration: .3s; */
-    /* transition-duration: .3s; */
-    height: 100%;
-    background: #EFEFF4;
-    -webkit-transform: translate3d(0,100%,0);
-    transform: translate3d(0,100%,0);
-    -webkit-transition-property: opacity,-webkit-transform;
-    transition-property: opacity,-webkit-transform;
-    transition-property: transform,opacity;
-    transition-property: transform,opacity,-webkit-transform;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-.popup-bottom .weui-popup__modal {
-    height: auto;
-}
-.am-list-header{
-    padding:0;
-}
-.w100{
-    width:100%;
-}
-.am-list-item.am-list-item-middle{
-    padding-left: 0;
-    .am-list-line{
-        padding-right:0;
+#carinfodetail{
+        
+    body {
+        min-height: 100vh;
+        background: #eee!important;
+        position: relative;
     }
-}
+    .ver_form{
+        background-color: #eee!important;
+    }
+    .weui-cells {
+        margin-top: 1.17647em;
+        background-color: rgb(255, 255, 255);
+        line-height: 1.41176;
+        font-size: 17px;
+        position: relative;
+        overflow: hidden;
+    }
+    .weui-cell {
+        position: relative;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 0px 15px;
+    }
+    .weui-cell__bd {
+        -webkit-box-flex: 1;
+        flex: 1 1 0%;
+    }
+    .weui-cell__ft {
+        text-align: right;
+        color: rgb(153, 153, 153);
+    }
+    .weui-cell::before {
+        content: " ";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 1px;
+        color: rgb(217, 217, 217);
+        transform-origin: 0px 0px 0px;
+        transform: scaleY(0.5);
+        left: 15px;
+        background: #d9d9d9;
+    }
+    .weui-btn_plain-default {
+        color: rgb(53, 53, 53);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(53, 53, 53);
+        border-image: initial;
+    }
+    .weui-btn {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 14px;
+        padding-right: 14px;
+        box-sizing: border-box;
+        font-size: 18px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        line-height: 2.55556;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        text-decoration: none;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .weui-popup__overlay {
+        background-color: rgba(0,0,0,.6);
+        /* opacity: 0; */
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+    }
 
-.am-list-item .am-list-line .am-list-extra{
-    flex-basis: 68%;
-    text-align: left;
+    .weui-popup__modal {
+        width: 100%;
+        position: absolute;
+        z-index: 100;
+        /* bottom: 0; */
+        border-radius: 0;
+        /* opacity: .6; */
+        color: #3d4145;
+        /* -webkit-transition-duration: .3s; */
+        /* transition-duration: .3s; */
+        height: 100%;
+        background: #EFEFF4;
+        -webkit-transform: translate3d(0,100%,0);
+        transform: translate3d(0,100%,0);
+        -webkit-transition-property: opacity,-webkit-transform;
+        transition-property: opacity,-webkit-transform;
+        transition-property: transform,opacity;
+        transition-property: transform,opacity,-webkit-transform;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .popup-bottom .weui-popup__modal {
+        height: auto;
+    }
+    .am-list-header{
+        padding:0;
+    }
+    .w100{
+        width:100%;
+    }
+    .am-list-item.am-list-item-middle{
+        padding-left: 0;
+        .am-list-line{
+            padding-right:0;
+        }
+    }
+
+    .am-list-item .am-list-line .am-list-extra{
+        flex-basis: 68%;
+        text-align: left;
+    }
+    .weui-btn_plain-default{
+        border-color: #0C92F2 ;
+    }
 }

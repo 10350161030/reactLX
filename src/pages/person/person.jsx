@@ -83,7 +83,7 @@ class Person extends Component {
     }
     render() {
         return (
-            <main className="home-container">
+            <main className="home-container" id="person">
               <div className="person_head">
                     <div className="person_headPhoto">
                         <img src={this.props.PersonList.PersonData.avatar} />

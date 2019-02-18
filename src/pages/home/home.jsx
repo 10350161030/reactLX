@@ -168,21 +168,19 @@ class Home extends Component {
         });
     }
     render() {
-        console.log("外render");
         return (
-            <main className="home-container">
-                <Button type="primary">alsdkja;djsadjsfjpoqjwelkjqf</Button>
+            <main className="home-container" id="home">
                 {
-                    this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin && !this.props.formData.LoginData.isAuthFinish && <a href="/base/01/realNameAuth" className="index_4Gtitle">{testJson.IndexAuthentication[0]}<br />
+                    this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin && !this.props.formData.LoginData.isAuthFinish && <NavLink to="/personid" className="index_4Gtitle">{testJson.IndexAuthentication[0]}<br />
                         <strong >{this.props.formData.LoginData.isCustomized ? testJson.IndexAuthentication[1] : (this.props.formData.LoginData.isGiveFlow ? testJson.IndexAuthentication[2] : testJson.IndexAuthentication[3])}</strong>
-                    </a>
+                    </NavLink>
                 }
                 <div className="swiper-container" id="index_banner1" ><div className="swiper-wrapper">{IMGList.map((item, index) => (<div key={index} className="swiper-slide" ><a href={item.url}><img src={item.pic} alt="banner图" /></a></div>))}</div><div className='swiper-pagination'></div></div>
                 <div className="base">
                     <div className="base_connent">
                         {
                             indexIcon.map((value, index) => (
-                                <a className="base_connent_flax" href={(!this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin) ? "javascript:;" : value.url} onClick={this.bindEQFun.bind(this)} key={index} >
+                                <NavLink className="base_connent_flax" to={(!this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin) ? "javascript:;" : value.url} onClick={this.bindEQFun.bind(this)} key={index} >
                                     <div className="base_connent_icon">
                                         <img src={value.pic} />
                                     </div>
@@ -190,7 +188,7 @@ class Home extends Component {
                                         <h2>{value.title}</h2>
                                         <p>{value.text}</p>
                                     </div>
-                                </a>
+                                </NavLink>
                             ))
                         }
                     </div>

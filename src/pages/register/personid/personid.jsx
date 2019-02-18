@@ -214,8 +214,8 @@ class Personid extends Component {
     }
     render() {
         return (
-            <main className="common-con-top">
-                <div className="person_id" id="person_id">
+            <main className="common-con-top" id="person_id">
+                <div className="person_id" >
                     <div className="person_topbox">
                         <div className="weui-flex person_idtitle">
                             <div className="weui-flex__item">请上传您的有效二代身份证</div>
@@ -273,28 +273,28 @@ class Personid extends Component {
                             <Flex className="weui-flex person_Bexbox">
                                 <Flex.Item>
                                     <div className="person_imgbox">
-                                        <img src={indexIconImgs[12]} alt="" />
+                                        <img src={indexIconImgs[13]} alt="" />
                                         <i className="person_success"></i>
                                     </div>
                                     <p>标准</p>
                                 </Flex.Item>
                                 <Flex.Item>
                                     <div className="person_imgbox">
-                                        <img src={indexIconImgs[13]} alt="" />
+                                        <img src={indexIconImgs[14]} alt="" />
                                         <i></i>
                                     </div>
                                     <p>表框缺失</p>
                                 </Flex.Item>
                                 <Flex.Item>
                                     <div className="person_imgbox">
-                                        <img src={indexIconImgs[14]} alt="" />
+                                        <img src={indexIconImgs[15]} alt="" />
                                         <i></i>
                                     </div>
                                     <p>照片模糊</p>
                                 </Flex.Item>
                                 <Flex.Item>
                                     <div className="person_imgbox">
-                                        <img src={indexIconImgs[15]} alt="" />
+                                        <img src={indexIconImgs[16]} alt="" />
                                         <i></i>
                                     </div>
                                     <p>闪光强烈</p>

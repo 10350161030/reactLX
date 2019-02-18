@@ -157,7 +157,7 @@ class Login extends Component {
     render() {
 
         return (
-            <main className="common-con-top">
+            <main className="common-con-top registerCommon" id="login">
                 <div className="ver_form clearfix">
                     <form className="cmxform" id="commentForm">
                         <div className="form-group clearfix">

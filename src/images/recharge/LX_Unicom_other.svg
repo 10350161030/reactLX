@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>叠加包</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="充值列表1" transform="translate(-153.000000, -540.000000)">
+            <g id="叠加包" transform="translate(153.000000, 540.000000)">
+                <polygon id="Path" fill="#8CF6FB" points="8 0.88125 0.01875 4.2984375 0.01875 4.6640625 8 8.15625 15.98125 4.6640625 15.98125 4.2984375"></polygon>
+                <polygon id="Path" fill="#3C2DCB" points="8 9.025 2.5125 6.625 0.01875 7.80625 0.01875 8.171875 8 11.6640625 15.98125 8.171875 15.98125 7.80625 13.4890625 6.625"></polygon>
+                <polygon id="Path" fill="#D098FF" points="8 12.4796875 2.5125 10.0796875 0.01875 11.2609375 0.01875 11.6265625 8 15.11875 15.98125 11.6265625 15.98125 11.2609375 13.4890625 10.0796875"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

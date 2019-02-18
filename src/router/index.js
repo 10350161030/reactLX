@@ -17,7 +17,9 @@ const carinfodetail = asyncComponent(() => import("@/pages/register/carinfodetai
 
 const nicknameedit = asyncComponent(() => import("@/pages/personinfo/component/NicknameEdit"));
 const history = asyncComponent(() => import("@/pages/history/history"));
-
+const flow_detail = asyncComponent(() => import("@/pages/flow/flow_detail/flow_detail"));
+const flow_package = asyncComponent(() => import("@/pages/flow/flow_package/flow_package"));
+const Planningtrip = asyncComponent(() => import("@/pages/Planningtrip/Planningtrip"));
 // react-router4 不再推荐将所有路由规则放在同一个地方集中式路由，子路由应该由父组件动态配置，组件在哪里匹配就在哪里渲染，更加灵活
 export default class RouteConfig extends Component{
   render(){
@@ -26,7 +28,7 @@ export default class RouteConfig extends Component{
         <Switch>
           <Route path="/"  exact  component={home} />
           <Route path="/login" component={login} />
-          <Route path="/repassword/:name" component={repassword} />
+          <Route path="/repassword" component={repassword} />
           <Route path="/changephone/:name" component={changephone} />
           <Route path="/register" component={register} />
           <Route path="/personinfo" component={personinfo} />
@@ -34,8 +36,10 @@ export default class RouteConfig extends Component{
           <Route path="/person" component={person} />
           <Route path="/personid" component={personid} />
           <Route path="/carinfo" component={carinfo} />
-
-           <Route path="/history" component={history} />
+          <Route path="/history" component={history} />
+          <Route path="/flowdetail" component={flow_detail} />
+          <Route path="/flowpackage" component={flow_package} />
+          <Route path="/Planningtrip" component={Planningtrip} />
 
 
           <Route path="/carinfodetail" component={carinfodetail} />

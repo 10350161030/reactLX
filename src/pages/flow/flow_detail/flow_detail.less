@@ -1,0 +1,421 @@
+@import (reference) "../../../style/reset.less";
+@assets-img: '../../../images/';
+#flow_detail{
+    .box {
+        background: #eee;
+        height:calc(~"100vh ") ;
+        position: relative;
+        overflow:hidden
+    }
+
+    .refreshTime{
+        text-align: center;
+        height:2.5rem;
+        line-height: 2.5rem;
+        color:#fff;
+        font-size: 1.2rem;
+        width: 100%;
+    }
+    .weui-pull-to-refresh__layer{
+        box-sizing: content-box;
+    }
+    .flowBox {
+        height:295px ;
+        padding: 1rem 1.6rem;
+        width:100%;
+        background: url("@{assets-img}recharge/flow_bg.png") center no-repeat;
+        background-size: 100% 100%;
+        .DeviceName {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            text-align: left;
+            text-indent: 1.5rem;
+        }
+    }
+
+
+    .chinaMove .flowBox {
+        header {
+            .flow_icon {
+                display: block;
+                width: 8rem;
+                height: 2.4rem;
+                background: url("@{assets-img}recharge/chinaMove_icon.png") center no-repeat;
+                background-size: contain;
+            }
+            text-align: center;
+        }
+    }
+    .Unicom .flowBox {
+        header {
+            .flow_icon {
+                display: block;
+                width: 8rem;
+                height: 2.4rem;
+                background: url("@{assets-img}recharge/Unicom_icon.svg") center no-repeat;
+                background-size: contain;
+            }
+            text-align: center;
+        }
+    }
+
+    .Telecom .flowBox {
+        header {
+            .flow_icon {
+                display: block;
+                width: 8rem;
+                height: 2.4rem;
+                background: url("@{assets-img}recharge/Telecom_icon.svg") center no-repeat;
+                background-size: 100%;
+                background-size: contain;
+            }
+            text-align: center;
+        }
+    }
+
+    .weui-btn {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 14px;
+        padding-right: 14px;
+        box-sizing: border-box;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        line-height: 2.55555556;
+        border-radius: 5px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        overflow: hidden;
+    }
+    .weui-btn:after {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid rgba(0,0,0,.2);
+        -webkit-transform: scale(.5);
+        transform: scale(.5);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+
+
+    .flowMain .weui-media-box {
+        padding-top: 0;
+        padding-bottom: 1.5rem;
+    }
+
+    .weui-media-box_appmsg {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .weui-media-box {
+        padding: 15px;
+        position: relative;
+    }
+    .weui-media-box_appmsg .weui-media-box__bd {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        min-width: 0;
+    }
+    .weui-media-box__title {
+        font-weight: 400;
+        font-size: 17px;
+        width: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+    .weui-badge {
+        display: inline-block;
+        padding: .15em .4em;
+        min-width: 8px;
+        border-radius: 18px;
+        background-color: #f43530;
+        color: #fff;
+        line-height: 1.2;
+        text-align: center;
+        font-size: 12px;
+        vertical-align: middle;
+    }
+    .weui-media-box__desc {
+        color: #999;
+        font-size: 13px;
+        line-height: 1.2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    .weui-panel {
+        background-color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #progress_contain {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -75px;
+        margin-left: -75px;
+        text-align: center;
+        color: #fff;
+        z-index: 10;
+        .title1 {
+            margin-top: 30px;
+            font-size: 14px;
+            strong {
+                font-size: 1.6rem;
+            }
+        }
+        .title2 {
+            margin-top: 5px;
+            font-size: 1.6rem;
+            strong {
+                line-height: 28px;
+                font-size: 2.6rem;
+            }
+        }
+        .title3 {
+            line-height: 150px;
+            font-size: 2.6rem;
+            text-align: center;
+        }
+    }
+
+    #flow_progress {
+        display: block;
+        margin: 0 auto;
+        height: 150px;
+    }
+
+    #flow_progress  {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 50%;
+        // background: #1084d0;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        margin:0  auto ;
+        // border: 5px solid #fff;
+        box-sizing: content-box;
+        z-index: 999;
+    }
+
+    #flow_progress  canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+    }
+
+
+
+    .flow_used {
+        position: relative;
+        height: 24px;
+        line-height: 24px;
+        color: #fff;
+        font-size: 1.6rem;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: 5px;
+        .flow_tip {
+            display: none;
+            float: left;
+            width: 24px;
+            height: 24px;
+            background: url("@{assets-img}recharge/flow-tip.svg") center no-repeat;
+            background-size: 98% 98%;
+            position: relative;
+        }
+        .flow_tip_text {
+            display: block;
+            float: left;
+            height: 24px;
+            line-height: 24px;
+        }
+    }
+    .weui-media-box:before{
+        display: none!important;
+    }
+    .flowMain {
+        height: calc(~"100vh  - 270px");
+        padding-bottom:7.8rem;
+        ::before,
+        ::after {
+            display: none;
+        }
+        .weui-panel__bd{
+            height: 10.5rem;
+            overflow-y: auto;
+            margin-bottom:1rem;
+            -webkit-overflow-scrolling:touch; 
+        }
+        color: #404040;
+        .weui-panel__hd {
+            padding: 10px 15px 5px;
+            font-size: 1.8rem;
+            margin-bottom: .2rem;
+            color: #404040; //    font-weight: bold;
+        }
+        .weui-media-box {
+            padding-top: 0;
+            padding-bottom:1.5rem;
+        }
+        .weui-media-box__title {
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+        }
+        .weui-media-box__desc {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            color: #404040;
+        }
+        .weui-cell_link {
+            color: #404040;
+            font-size: 1.6rem;
+            padding: 1.7rem 1.6rem 1.3rem;
+        }
+        .weui-cell:before {
+            left: 0;
+            height: .4rem;
+            background: #eee;
+            transform: scaleY(0.9);
+        }
+        .weui-badge {
+            line-height: 1.1;
+            padding: .16em .5em; // transform: scale(0.8)
+            margin-left: .3rem;
+        }
+    }
+
+    footer {
+        height: 4.6rem;
+        padding: 0 1.6rem;
+        position: absolute;
+        bottom: 1.6rem;
+        width: 100%;
+        z-index: 99;
+    }
+
+
+    .rechargeBtn {
+        background:#0C92F2; 
+    }
+    .rechargeBtn:active{
+        background-color: #068AFF!important;
+        opacity: 0.5;
+    }
+
+
+
+    .Notice{
+        padding-left:4.6rem;
+        background: url("@{assets-img}recharge/Notice.svg") left center no-repeat;
+        color:#E90003!important;
+    }
+
+    .equipment_detail{
+        position: absolute;
+        left:50%;
+        top:-5.8rem;
+        width:100%;
+        height: 5rem;
+        width: 18rem;
+        margin-left:-9rem;
+        display: none;
+        text-align: center;
+        z-index: 1000;
+    }
+    .equipment_detail_main{
+        width: 18rem;
+        margin:0 auto;
+        height: 5rem;
+        display: inline-block;
+        z-index: 10;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        font-style: normal;
+        color:#404040;
+        text-align: left;
+        text-align: start;
+        text-decoration: none;
+        text-shadow: none;
+        text-transform: none;
+        letter-spacing: normal;
+        word-break: normal;
+        word-spacing: normal;
+        word-wrap: normal;
+        white-space: normal;
+        background-color: #fff;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        border-radius: 6px;
+        line-break: auto;
+        padding: .9rem 1rem;
+        position: relative;
+    }
+    .equipment_detail_main .arrow::after{
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        content: "";
+        border-width: 1.1rem;
+        bottom: .1rem;
+        margin-left: -1.1rem;
+        border-bottom-width: 0;
+        border-top-color: #fff;
+    }
+
+    .equipment_detail_main .arrow{
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 1.1rem;
+        border-top-color: rgba(0,0,0,.25);
+        bottom: -1.1rem;
+        left: 50%;
+        margin-left: -1.1rem;
+        border-bottom-width: 0;
+    }
+    .equipment_detail_main textarea{
+        display: inline-block;
+
+    }
+    .dn {
+        display: none; 
+    }
+    .db{
+        display: inline-block;
+    }
+}

@@ -222,7 +222,7 @@ class Carinfo extends Component {
     }
     render() {
         return (
-            <main className="common-con-top">
+            <main className="common-con-top carinfocommon">
                 <div className="carinfo_4Gbox h100" id="carinfo_4G">
                     <div className="weui-flex carinfo_tip">
                         <div className="weui-flex__item">所填信息仅用于我们或合作方为您提供车主服务</div>

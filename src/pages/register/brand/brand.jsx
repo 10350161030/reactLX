@@ -91,7 +91,7 @@ class Brand extends Component {
     }
     render() {
         return (
-            <main className="common-con-top" id="brandBox">
+            <main className="common-con-top brandcommon" id="brandBox">
                 <div className="Car_brand">
                     <div className="weui-cells car_branm0">
                         <div className="carbrand_listbox">

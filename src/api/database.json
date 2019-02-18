@@ -3,12 +3,12 @@
 	"more": ["http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1"],
 	"IndexIcon": [
 		{
-			"url": "/track/01/history",
+			"url": "/history",
 			"title": "我的行程",
 			"text": "记录美好出行"
 		},
 		{
-			"url": "/base/01/rechargeAuth",
+			"url": "/flowdetail",
 			"title": "流量统计",
 			"text": "车机流量管家"
         },

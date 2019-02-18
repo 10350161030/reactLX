@@ -212,7 +212,45 @@ class API extends Server {
             throw err;
         }
     }
+    /* 获取删除地图轨迹 */
+    async deleMapdata(params = {}, seriesParams, modeParams) {
+        try {
+            let result = await this.axios('post', '/track/01/deleteTrackDate', params);
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
 
+    /* 获取车机设备信息 */
+    async getCarFlowDeta(params = {}, seriesParams, modeParams) {
+        try {
+            let result = await this.axios('post', '/flow/01/queryCarFlowDeta', params);
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+
+    /* 获取流量剩余情况及当前使用套餐 */
+    async refreshFun(params = {}, seriesParams, modeParams) {
+        try {
+            let result = await this.axios('post', '/flow/01/queryFlowDeta', params);
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
+    /* 获取流量套餐包 */
+    async queryFlowPackage(params = {}, seriesParams, modeParams) {
+        try {
+            let result = await this.axios('post', '/flow/01/queryFlowPackage', params);
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
 
 }
 

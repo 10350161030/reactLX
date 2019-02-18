@@ -264,7 +264,7 @@ class Carinfodetail extends Component {
         // console.log("渲染次数");
 
         return (
-            <main className="common-con-top">
+            <main className="common-con-top carinfocommon" id="carinfodetail">
                 {this.state.brandState && <Brand className="brandBox"></Brand>}
                 {this.state.serideState && <BrandSeries></BrandSeries>}
                 {this.state.modeState && <BrandMode></BrandMode>}

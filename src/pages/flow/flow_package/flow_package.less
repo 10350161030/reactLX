@@ -1,0 +1,238 @@
+@import (reference) "../../../style/reset.less";
+@bglj:"../../../images/recharge";
+// body{
+//     .bgeee;
+//     .minh100vh;
+// }
+#flow_package{
+    header{
+        height: 4rem;
+        line-height: 4rem;
+        width:100%;
+        text-align: center;
+        position: relative;
+        margin-bottom: 1.6rem;
+        .title{
+            display: inline-block;
+        }
+        .title_text{
+            font-size: 1.6rem;
+            color:#616161;
+            height: 4rem;
+            line-height: 4rem;
+            padding-left:4rem;
+            padding-right:2rem;
+        }
+    
+
+    }
+    header::after{
+        content: "";
+        position: absolute;
+        width:100%;
+        height: 1px;
+        bottom:0;
+        left:0;
+        background: #eee;
+    }
+    .main{
+        .describe{
+            h4{
+                font-size: 1.2rem;
+                color: #4a4a4a;
+                .lh20;
+
+
+            }
+            p{
+                font-size: 1.2rem;
+                color: #9b9b9b;
+            padding-left: 1.5rem;
+            .lh20;
+            }
+        }
+    }
+    .main_package,.other_package{
+        .bg_fff;
+        padding:0 1rem;
+        .pdB20;
+    }
+    .other_package{
+        .mgT4;
+    }
+    .packageList_box{
+        .ov;
+        .packagelist:nth-child(3n) {
+            margin-right: 0;
+        }
+        .packagelist{
+            margin-right:1.5%;
+            width:32%;
+            border:1px solid #eee;
+            height: 15rem;
+            border-radius: .4rem;
+            .fl;
+            .mgT10;
+            .pd12;
+            .tc;
+            h3,.money,del,.time{
+                .w100;
+                .db;
+                .mgB6;
+            }
+            h3{
+                .cl_000;
+                .fs18;
+            }
+            .money{
+                .fs24;
+                color:#ff5341;
+            }
+            del{
+                opacity: 0.2;
+                .cl_000;
+                .fs14;
+            }
+            .time{
+                color: #8f8e94;
+                .fs14;
+            }
+            a{
+                width:7.8rem;
+                height: 2rem;
+                line-height: 2.2rem;
+                background: #EA4B3B;
+                border-radius:1rem;
+                .pdL10;
+                .pdR10;
+                .cl_fff;
+                padding-bottom:0;
+                padding-top: 0;
+                .fs12;
+            }
+            a:active{
+                opacity: 0.6;
+            }
+        }
+        .packagelist:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+    .list_rq{
+        background: url("@{bglj}/list_rq.svg") right top no-repeat; 
+    }
+    .list_ZZ{
+        background: url("@{bglj}/list_zz.svg") right top no-repeat; 
+    }
+    .list_TJ{
+        background: url("@{bglj}/list_tj.svg") right top no-repeat; 
+    }
+
+
+
+    /*公共toast样式*/
+    .alert_error {
+        height: 3rem;
+        line-height: 3rem;
+        position: fixed;
+        bottom: 12.6rem;
+        left:0;
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-align: center;
+        font-family: PingFangSC-Regular;
+        font-size: 1.2rem;
+        color: #FFFFFF;
+        border-radius: .5rem;
+        animation: erroralert .2s ease-in-out;
+        z-index: 9992;
+        display: none;
+    }
+    .alert_error span{
+        background-color: rgba(0,0,0,.5);
+        border-radius: .5rem;
+        padding: .7rem 1rem;
+        font-size: 1.2rem;
+    }
+    /*错误信息弹出动画*/
+
+    @keyframes erroralert {
+        0% {
+            opacity: 0;
+            bottom: 0px;
+        }
+        25% {
+            opacity: .25;
+            bottom: 31.5px;
+        }
+        50% {
+            opacity: .5;
+            bottom: 63px;
+        }
+        75% {
+            opacity: .75;
+            bottom: 94.5px;
+        }
+        100% {
+            opacity: 1;
+            bottom: 126px;
+        }
+    }
+
+    @-webkit-keyframes erroralert {
+        0% {
+            opacity: 0;
+            bottom: 0px;
+        }
+        25% {
+            opacity: .25;
+            bottom: 31.5px;
+        }
+        50% {
+            opacity: .5;
+            bottom: 63px;
+        }
+        75% {
+            opacity: .75;
+            bottom: 94.5px;
+        }
+        100% {
+            opacity: 1;
+            bottom: 126px;
+        }
+    }
+
+
+    #LX_Unicom{
+        .title_text{
+            background: url("@{bglj}/Telecom_min.svg") left 2rem center no-repeat , url("@{bglj}/top_left.svg") left center  no-repeat,url("@{bglj}/top_right.svg") right center no-repeat;
+        }
+        .other_package{
+            .title_text{
+                background: url("@{bglj}/Telecom_other.svg") left 2rem center no-repeat , url("@{bglj}/bottom_left.svg") left center  no-repeat,url("@{bglj}/bottom_right.svg") right center no-repeat;
+            } 
+        }
+    }
+
+    #Telecom{
+        .title_text{
+            background: url("@{bglj}/LX_Unicom_main.svg") left 2rem center no-repeat , url("@{bglj}/top_left.svg") left center  no-repeat,url("@{bglj}/top_right.svg") right center no-repeat;
+        }
+        .other_package{
+            .title_text{
+                background: url("@{bglj}/LX_Unicom_other.svg") left 2rem center no-repeat , url("@{bglj}/bottom_left.svg") left center  no-repeat,url("@{bglj}/bottom_right.svg") right center no-repeat;
+            } 
+        }
+    }
+    #shenzhen_Unicom{
+        .title_text{
+            background: url("@{bglj}/shenzhen_Unicom_main.svg") left 2rem center no-repeat , url("@{bglj}/top_left.svg") left center  no-repeat,url("@{bglj}/top_right.svg") right center no-repeat;
+        }
+        .other_package{
+            .title_text{
+                background: url("@{bglj}/shenzhen_Unicom_other.svg") left 2rem center no-repeat , url("@{bglj}/bottom_left.svg") left center  no-repeat,url("@{bglj}/bottom_right.svg") right center no-repeat;
+            } 
+        }
+    }
+}

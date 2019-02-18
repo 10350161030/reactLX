@@ -78,7 +78,7 @@ class BrandSeries extends Component {
     render() {
         console.log(this.state.seriesInfoList);
         return (
-            <main className="common-con-top" id="seriesBox">
+            <main className="common-con-top brandcommon" id="seriesBox">
                 <div className=" Car_brand Car_branddetail" id="carConfiguration">
                     <div className="weui-cell cell_branddetailT">
                         <div className="weui-cell__hd"><img src={this.props.brandData.brandDataList.brandImage} id="pageLogoSrc" /></div>

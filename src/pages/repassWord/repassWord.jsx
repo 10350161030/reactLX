@@ -282,7 +282,7 @@ class Register extends Component {
     render() {
 
         return (
-            <main className="common-con-top">
+            <main className="common-con-top registerCommon" id="repassword">
                 <div className="ver_form clearfix">
                     <header id="head_form">
                         <div className="register_photo"><img src={this.props.PersonList.PersonData.avatar} /></div>

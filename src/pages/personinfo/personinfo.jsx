@@ -190,7 +190,7 @@ class PersonInfo extends Component {
 
     render() {
         return (
-            <main className="home-container">
+            <main className="home-container" id="personinfo">
                 {
                     this.state.CropperState && <div className="photocli_box">
                         <Cropper
