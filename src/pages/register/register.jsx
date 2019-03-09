@@ -29,7 +29,7 @@ class Register extends Component {
         alertTip: "信息提示",
         submitStatus: false,
 
-        agree: true,/* 选择框 */
+        agree: "on",/* 选择框 */
 
         phoneValue: "",/* 手机号校验 */
         phoneHasError: false,
@@ -83,7 +83,7 @@ class Register extends Component {
             })
             this.closeAlertFun();
             return false;
-        } else if (!this.state.agree) {
+        } else if (this.state.agree!="on") {
             this.setState({
                 alertStatus: true,
                 alertTip: "请同意协议条款",
@@ -264,7 +264,7 @@ class Register extends Component {
 
 
     componentWillUpdate(v1, v2) {
-        if (v2.phoneValue.match(/^1[3|4|5|6|7|8|9][0-9]{9}$/) && v2.agree && v2.codeValue.match(/^[0-9]{6}$/) && v2.passWordValue.match(/^[0-9a-zA-Z]{6,16}$/)) {
+        if (v2.phoneValue.match(/^1[3|4|5|6|7|8|9][0-9]{9}$/) && (v2.agree=="on") && v2.codeValue.match(/^[0-9]{6}$/) && v2.passWordValue.match(/^[0-9a-zA-Z]{6,16}$/)) {
             this.setState({
                 submitStatus: true,
             })
@@ -353,7 +353,7 @@ class Register extends Component {
                             <div id="checkbox_Id" className={this.state.agree ? "active" : ""}>
                                 <input type="checkbox"
                                     onChange={this.agreeChange}
-                                    className="checkbox" id="agree" name="agree" required="" checked="" />
+                                    className="checkbox" id="agree" name="agree" value="on" required="" checked="" />
                             </div>
                             <p className="xieyi">已阅读并同意
                                 <NavLink to="/" href="/page/public/one/user.html">《用户使用协议》</NavLink>和

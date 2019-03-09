@@ -27,8 +27,8 @@ export default class Server {
         baseURL: envconfig.baseURL,
         timeout: 30000,
         params: null,
+        withCredentials: false, //是否携带cookies发起请求
         headers: null,
-        withCredentials: true, //是否携带cookies发起请求
         validateStatus:(status)=>{
             return status >= 200 && status < 300;
         },

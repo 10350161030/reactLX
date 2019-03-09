@@ -40,7 +40,6 @@ class NicknameEdit extends Component {
     }
 
     nickNameChange = (value) => {
-        console.log(value);
         if(this.props.match.params.name==value){
             this.setState({
                 nickName:value,

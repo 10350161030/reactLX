@@ -94,7 +94,6 @@ class FlowDetail extends Component {
                     waveheight = (isNumber / 50) * 7
                 }
 
-                console.log(waveheight);
 
                 if (result.body.resultList.length > 0) {
                     this.setState({

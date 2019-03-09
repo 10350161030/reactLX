@@ -214,7 +214,6 @@ class Changephone extends Component {
 
 
     componentWillUpdate(v1, v2) {
-        console.log();
         if (v2.phoneValue.match(/^1[3|4|5|6|7|8|9][0-9]{9}$/) && v2.agree && v2.codeValue.match(/^[0-9]{6}$/)) {
             this.setState({
                 submitStatus: true,

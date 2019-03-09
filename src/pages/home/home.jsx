@@ -4,18 +4,13 @@ import { connect } from 'react-redux';
 import { is, fromJS } from 'immutable';
 import PropTypes from 'prop-types';
 import API from '@/api/api';
-// import envconfig from '@/envconfig/envconfig';
 import { isUserLogin } from '@/store/main/action';
-// import { clearSelected } from '@/store/production/action';
-// import PublicHeader from '@/components/header/header';
 import PublicFooter from '@/components/footer/footer';
 
 import PublicAlert from '@/components/alert/alert';
-// import TouchableOpacity from '@/components/TouchableOpacity/TouchableOpacity';
 import mixin, { padStr } from '@/utils/mixin';
 import './home.less';
 import wx from 'weixin-js-sdk';
-// import { Button } from 'react-weui';
 import Swiper from 'swiper/dist/js/swiper.js';
 import 'swiper/dist/css/swiper.min.css';
 import testJson from "@/api/database.json";/* 文案 */
@@ -82,7 +77,6 @@ class Home extends Component {
     /* 绑定设备方法 */
     bindEQFun = () => {
         if (!this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin) {
-            console.log(44);
             this.setState({
                 bindEQStatus: true,
                 bgMask: true,
@@ -131,19 +125,27 @@ class Home extends Component {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
     componentWillMount() {
-        this.props.isUserLogin();
+        // this.props.isUserLogin();
+        /* 获取是否绑定 */
+
+        /* 获取是否赠送流量 */
+
+        /* 获取用户信息 */
+
     }
     componentWillReceiveProps(nextProps) {
+
+
         /* 异步判断是否登录异常 */
-        if (nextProps.formData.LoginError.code) {
+        if (nextProps.formData.LoginError.msg) {
             this.setState({
                 alertStatus: true,
-                alertTip: nextProps.formData.LoginError.code
+                alertTip: nextProps.formData.LoginError.msg
             })
             this.closeAlertFun();
         }
         /* 判断新用户福利 */
-        if (nextProps.formData.LoginData.isLogin && nextProps.formData.LoginData.isBind && nextProps.formData.LoginData.giftSwitch && !nextProps.formData.LoginData.isGiveFlow && nextProps.formData.LoginData.supplier) {
+        if (sessionStorage.getItem("Login") && nextProps.formData.LoginData.isBind && nextProps.formData.LoginData.giftSwitch && !nextProps.formData.LoginData.isGiveFlow && nextProps.formData.LoginData.supplier) {
             this.setState({
                 newUserAlert: true,
                 bgMask: true,
@@ -166,12 +168,13 @@ class Home extends Component {
                 prevEl: '.swiper-button-prev',
             },
         });
+    
     }
     render() {
         return (
             <main className="home-container" id="home">
                 {
-                    this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin && !this.props.formData.LoginData.isAuthFinish && <NavLink to="/personid" className="index_4Gtitle">{testJson.IndexAuthentication[0]}<br />
+                    this.props.formData.LoginData.isBind && sessionStorage.getItem("Login") && !this.props.formData.LoginData.isAuthFinish && <NavLink to="/personid" className="index_4Gtitle">{testJson.IndexAuthentication[0]}<br />
                         <strong >{this.props.formData.LoginData.isCustomized ? testJson.IndexAuthentication[1] : (this.props.formData.LoginData.isGiveFlow ? testJson.IndexAuthentication[2] : testJson.IndexAuthentication[3])}</strong>
                     </NavLink>
                 }
@@ -180,7 +183,7 @@ class Home extends Component {
                     <div className="base_connent">
                         {
                             indexIcon.map((value, index) => (
-                                <NavLink className="base_connent_flax" to={(!this.props.formData.LoginData.isBind && this.props.formData.LoginData.isLogin) ? "javascript:;" : value.url} onClick={this.bindEQFun.bind(this)} key={index} >
+                                <NavLink className="base_connent_flax" to={(!this.props.formData.LoginData.isBind && sessionStorage.getItem("Login")) ? "javascript:;" : value.url} onClick={this.bindEQFun.bind(this)} key={index} >
                                     <div className="base_connent_icon">
                                         <img src={value.pic} />
                                     </div>
@@ -219,7 +222,7 @@ class Home extends Component {
                         <a href="javascript:;" onClick={this.getGitFlow.bind(this)} className="alert_stylebtn ">领取流量</a>
                     </div>
                 }
-                {!this.props.formData.LoginData.isLogin && <NavLink href="javascript:;" to="/register" id="mask"></NavLink>}
+                {! sessionStorage.getItem("Login") && <NavLink href="javascript:;" to="/register" id="mask"></NavLink>}
                 <PublicFooter></PublicFooter>
                 <PublicAlert alertStatus={this.state.alertStatus} alertTip={this.state.alertTip} />
             </main>

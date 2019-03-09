@@ -58,6 +58,21 @@
         border-radius: 5px;
         overflow: hidden;
     }
+    #listResult li:before {
+        left: 0;
+        background: rgb(217, 217, 217);
+    }
+    .weui-cell::before {
+        content: " ";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 1px;
+        color: rgb(217, 217, 217);
+        transform-origin: 0px 0px 0px;
+        transform: scaleY(0.5);
+        left: 15px;
+    }
     #searchbtn {
         width: 4rem;
         height: 2.8rem;

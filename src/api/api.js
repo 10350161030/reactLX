@@ -12,12 +12,45 @@ class API extends Server {
      */
     async isUserLogin(params = {}) {
         try {
-            let result = await this.axios('post', '/person/isUserLogin', params);
+            let result = await this.axios('post', '/user/01/findUserLogin', params);
+            // let result = await this.axios('post', ' https://www.easy-mock.com/mock/5c2d6b92410de05f5d0de661/user/01/person/isUserLogin', params);
+            return result;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+    /**
+     *  用途：授权提交接口
+     *  @url 
+     *  返回status为1表示成功
+     *  @method post
+     *  @return {promise}
+     */
+    async userInfoAuth(params = {}) {
+        try {
+            let result = await this.axios('post', '/base/01/index', params);
             return result;
         } catch (err) {
             throw err;
         }
     }
+    /**
+     *  用途：获取openid接口
+     *  @url 
+     *  返回status为1表示成功
+     *  @method post
+     *  @return {promise}
+     */
+    async openidFun(params = {},code) {
+        try {
+            let result = await this.axios('post', '/base/01/exchange/'+code, params);
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
+
 
 
     /**

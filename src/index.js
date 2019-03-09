@@ -21,7 +21,6 @@ const render = Component =>{
           </AppContainer>
         </Provider>, document.getElementById('LiuXin'));/* 定义类名 中的name */
 }
-
 render(Route);
 if(module.hot){
     module.hot.accept("./router/",() => {

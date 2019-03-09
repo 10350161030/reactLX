@@ -1,0 +1,50 @@
+{
+	
+	"more": ["http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1", "http://h5.m.jd.com/active/2hqsQcyM5bEUVSStkN3BwrBHqVLd/index.html?has_native=1"],
+	"IndexIcon": [
+		{
+			"url": "/track/01/history",
+			"title": "我的行程",
+			"text": "记录美好出行"
+		},
+		{
+			"url": "/base/01/rechargeAuth",
+			"title": "流量统计",
+			"text": "车机流量管家"
+        },
+        {
+			"url": "/track/01/meetPeople",
+			"title": "去接朋友",
+			"text": "沟通再简单点"
+        },
+        {
+			"url": "/track/01/bespeakNavigation",
+			"title": "规划出行",
+			"text": "效率提升一点"
+		}
+    ],
+    "IndexAuthentication":[
+        "工信部要求网络用户需实名认证，否则影响正常使用！",
+        "点击继续激活流量套餐>>",
+        "点击实名领取流量>>",
+        "点击实名>>"
+    ],
+    "bindEQStatus":[
+        "设备未绑定",
+        "绑定设备才能使用该服务",
+        "绑定设备"
+    ],
+    "newUserWelfare":[
+        "设备绑定成功",
+        "快去领取新用户福利吧",
+        "暂不领取",
+        "领取流量"
+    ]
+}
+
+
+
+
+
+
+
